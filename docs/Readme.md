@@ -65,16 +65,3 @@ ao email do gestor para poder pedir mais items.
 
 O cliente deve ser capaz de realizar o cancelamento de uma compra e ter o valor da compra extornado. Ao cancelar a compra, os produtos serão retornados a empresa
 e os níveis do estoque dos mesmos deverão ser atualizados também.
-
-## O usuário poderá acompanhar o andamento da compra
-
-Quando um cliente finalizar a compra dele
-- Os descontos passados pelo cliente devem ser aplicados ao valor total da venda, sendo possivel ver o valor com e sem desconto.
-- Deve ser possível buscar um produto tanto pelo nome como pelo código do mesmo.
-- Os métodos de entrega podem variar de acordo com a destinação, assim como o valor da entrega, sendo calculado baseado no destino.
-- O cliente pode cadastrar um ou mais endereços.
-- O administrador poderá ter uma visão geral das compras realizdas, contendo o preço dos items no momento da compra, assim como outras informações.
-- Como administrador gostaria de alterar o valor dos produtos
-- Deve ser possível extornar uma compra, onde os items serão readicionados ao estoque e o valor da compra ressarcido ao cliente
-- O usuário vai poder acompanhar o andamento da entrega dos produtos dele
-- Será possíve buscar uma compra pelo seu código
