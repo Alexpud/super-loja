@@ -41,7 +41,32 @@ Os clientes ao acessarem a plataforma, devem ser capazes de se registrar dado qu
 
 Um cliente pode ter mais de um endereço e ao finalizar uma compra ele pode selecionar para qual endereço enviar a compra.
 
-# Ao finalizar uma compra, os produtos do estoque que foram comprados levarão baixa de acordo com os items comprados.
+## Um cliente deve ser capaz de realizar uma compra
+
+O cliente deve ser capaz de realizar uma compra com 1 ou mais produtos, e nesse processo, escolher também o método de entrega, aplicar vouchers de desconto,
+endereço de entrega. Os vouchers são aplicados ao valor resultante da venda.
+
+Diferentes métodos de entrega, terão valores diferentes.
+
+## O administrador deverá ser capaz de ter uma visão geral das compras realizadas pelos clientes
+
+O administrador deve ser capaz de visualizar as compras realizadas, sendo capaz de ver os valores dos items no momento da compra em especifico.
+
+## O adminsitrador é capaz de alterar os valores dos produtos
+
+O administrador deve ser capaz de alterar o valor dos produtos
+
+## Ao finalizar uma compra, os produtos do estoque que foram comprados levarão baixa de acordo com os items comprados.
+
+Ao finalizar uma compra os niveis de estoque dos produtos compradso devem ser atualizados e caso estejam abaixo do nivel minimo, um alerta deve ser enviado
+ao email do gestor para poder pedir mais items.
+
+## O cliente poderá solicitar o cancelamento da compra
+
+O cliente deve ser capaz de realizar o cancelamento de uma compra e ter o valor da compra extornado. Ao cancelar a compra, os produtos serão retornados a empresa
+e os níveis do estoque dos mesmos deverão ser atualizados também.
+
+## O usuário poderá acompanhar o andamento da compra
 
 Quando um cliente finalizar a compra dele
 - Os descontos passados pelo cliente devem ser aplicados ao valor total da venda, sendo possivel ver o valor com e sem desconto.
