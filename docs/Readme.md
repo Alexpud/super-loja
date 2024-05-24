@@ -1,0 +1,55 @@
+# Histórias
+
+## Como administrador gostaria de poder cadastrar produtos
+
+Como um administrador da plataforma, gostaria de poder cadastrar os produtos com as seguintes informações:
+
+- Nome
+- Codigo
+- Marca
+- Peso Unitário
+- Quantidade
+- Valor
+
+## Como adminsitrador gostaria de poder cadastrar promoções para produtos
+
+Como um administrador da plataforma, gostaria de poder cadastrar promoções para produtos, com os valores do desconto sendo em porcentagem, maiores que zero e
+menores que 100. Ao criar uma promoção, ela deve vir desativada
+
+## Não será possivel alterar o valor da promoção já cadastrada
+
+Não será possível alterar o valor de uma promoção. O correto será descontinuar ela e cadastrar/ativar outra.
+
+## Uma promoção terá um tempo de expiração
+
+Uma promoção terá um tempo de expiração onde após essa data, elas serão automaticamente desativadas.
+
+## Uma promoção não pode ser cadastrada com o valor zerado
+
+Uma promoção não poderá ser cadastrada com valor zerado ou negativado. 
+
+## Os clientes devem poder se registrar na plataforam
+
+Os clientes ao acessarem a plataforma, devem ser capazes de se registrar dado que as informações passadas sejam validas. As informações dos clientes são:
+
+- Nome
+- Endereços
+    - Rua
+    - Complemento
+    - Numero
+    - CEP
+
+Um cliente pode ter mais de um endereço e ao finalizar uma compra ele pode selecionar para qual endereço enviar a compra.
+
+# Ao finalizar uma compra, os produtos do estoque que foram comprados levarão baixa de acordo com os items comprados.
+
+Quando um cliente finalizar a compra dele
+- Os descontos passados pelo cliente devem ser aplicados ao valor total da venda, sendo possivel ver o valor com e sem desconto.
+- Deve ser possível buscar um produto tanto pelo nome como pelo código do mesmo.
+- Os métodos de entrega podem variar de acordo com a destinação, assim como o valor da entrega, sendo calculado baseado no destino.
+- O cliente pode cadastrar um ou mais endereços.
+- O administrador poderá ter uma visão geral das compras realizdas, contendo o preço dos items no momento da compra, assim como outras informações.
+- Como administrador gostaria de alterar o valor dos produtos
+- Deve ser possível extornar uma compra, onde os items serão readicionados ao estoque e o valor da compra ressarcido ao cliente
+- O usuário vai poder acompanhar o andamento da entrega dos produtos dele
+- Será possíve buscar uma compra pelo seu código
