@@ -1,3 +1,5 @@
+using FluentValidation.Results;
+
 namespace SuperLoja.Api.Domain.Entidades;
 
 public abstract class EntidadeBase
@@ -5,8 +7,11 @@ public abstract class EntidadeBase
     public Guid Id { get; set; }
     public DateTime CriadoEm { get; set; }
     public DateTime? UltimaAtualizacaoEm { get; set; }
-    public virtual bool EhValida()
+    public abstract ValidationResult Validar();
+
+    public EntidadeBase()
     {
-        return true;
+        Id = Guid.NewGuid();
+        CriadoEm = DateTime.Now;
     }
 }
