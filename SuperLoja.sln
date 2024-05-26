@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{CC70AB8A-F2BD-49C1-B922-C25536B755AF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuperLoja.Api", "src\SuperLoja.Api\SuperLoja.Api.csproj", "{6823D07F-D06A-45EC-A6E0-84EA627883A6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{B4357645-3F31-478D-93FF-52D53D06D38A}"
+	ProjectSection(SolutionItems) = preProject
+		docs\Readme.md = docs\Readme.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{989D0875-90B5-45FD-83A4-B3F06FBFD6D1}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{7BE252FF-8F00-419A-ADEA-AA10738D07A5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6823D07F-D06A-45EC-A6E0-84EA627883A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6823D07F-D06A-45EC-A6E0-84EA627883A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6823D07F-D06A-45EC-A6E0-84EA627883A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6823D07F-D06A-45EC-A6E0-84EA627883A6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6823D07F-D06A-45EC-A6E0-84EA627883A6} = {CC70AB8A-F2BD-49C1-B922-C25536B755AF}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D4674EB1-C253-4490-BBB0-342169114C0A}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <EditorConfigFiles Remove="C:\Users\Familia\Projects\super-loja\src\SuperLoja.Api\.editorconfig" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="C:\Users\Familia\Projects\super-loja\src\SuperLoja.Api\.editorconfig" />
+    </ItemGroup>
+
+</Project>
