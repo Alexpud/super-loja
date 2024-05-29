@@ -5,35 +5,53 @@ namespace SuperLoja.Api.Infrastructure.Repository;
 
 public class ProdutoRepository : IProdutoRepository
 {
+    public IQueryable<Produto> AsQueryable()
+    {
+        return new List<Produto>
+        {
+            new Produto(
+                nome: "Produto novo",
+                codigo: "Codigo novo",
+                marca: "Marca nova",
+                quantidade: 2,
+                quantidadeMinima: 2,
+                pesoUnitario: 1)
+        }.AsQueryable();
+    }
+
     public List<Produto> Listar()
     {
         return new List<Produto>
         {
-            new Produto()
-            {
-                Nome = "Produto novo",
-                Codigo = "Codigo novo",
-                Marca = "Marca nova",
-                PesoUnitario = 2,
-                Quantidade = 2,
-                Id = Guid.NewGuid()
-            }
+            new Produto(
+                nome: "Produto novo",
+                codigo: "Codigo novo",
+                marca: "Marca nova",
+                quantidade: 2,
+                quantidadeMinima: 2,
+                pesoUnitario: 1)
         };
     }
 
     public Produto ObterPorCodigo(string codigo)
     {
-        return new Produto()
-        {
-            Codigo = codigo
-        };
+        return new Produto(
+            nome: "Produto novo",
+            codigo: "Codigo novo",
+            marca: "Marca nova",
+            quantidade: 2,
+            quantidadeMinima: 2,
+            pesoUnitario: 1);
     }
 
     public Produto ObterPorId(Guid id)
     {
-        return new Produto()
-        {
-            Id = id
-        };
+        return new Produto(
+            nome: "Produto novo",
+            codigo: "Codigo novo",
+            marca: "Marca nova",
+            quantidade: 2,
+            quantidadeMinima: 2,
+            pesoUnitario: 1);
     }
 }
