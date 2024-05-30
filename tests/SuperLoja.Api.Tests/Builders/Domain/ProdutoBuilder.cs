@@ -6,35 +6,50 @@ namespace SuperLoja.Api.Tests.Builders.Domain;
 public class ProdutoBuilder : BaseBuilder<Produto, ProdutoBuilder>
 {
     private readonly Fixture _fixture = new();
-    private string _codigo;
+    private string? _codigo, _nome, _marca;
+    private int _quantidade;
+
     public override ProdutoBuilder BuildDefault()
     {
-        return this;
-    }
-
-    public ProdutoBuilder ComCodigo(string codigo)
-    {
-        _codigo = codigo;
+        _codigo = _fixture.Create<string>();
+        _nome = _fixture.Create<string>();
+        _marca = _fixture.Create<string>();
         return this;
     }
 
     public override Produto Create()
     {
         return new Produto(
-            nome: _fixture.Create<string>(),
-            codigo: _codigo ?? _fixture.Create<string>(),
-            marca: _fixture.Create<string>(),
-            quantidade: _fixture.Create<int>(),
+            nome: _nome,
+            codigo: _codigo,
+            marca: _marca,
+            quantidade: _quantidade,
             quantidadeMinima: _fixture.Create<int>(),
             pesoUnitario: _fixture.Create<float>());
     }
-}
 
-public abstract class BaseBuilder<TEntity, TBuilder>
-{
-    protected TEntity _object;
-    
-    public abstract TBuilder BuildDefault();
+    public ProdutoBuilder ComCodigo(string? codigo)
+    {
+        _codigo = codigo;
+        return this;
+    }
 
-    public virtual TEntity Create() => _object;
+
+    public ProdutoBuilder ComNome(string? nome)
+    {
+        _nome = nome;
+        return this;
+    }
+
+    public ProdutoBuilder ComMarca(string? marca)
+    {
+        _marca = marca;
+        return this;
+    }
+
+    public ProdutoBuilder ComQuantidade(int quantidade)
+    {
+        _quantidade = quantidade;
+        return this;
+    }
 }

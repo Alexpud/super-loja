@@ -1,6 +1,5 @@
 ﻿using AutoFixture;
 using FluentValidation.TestHelper;
-using SuperLoja.Api.Domain.Entidades;
 using SuperLoja.Api.Domain.Validator;
 using SuperLoja.Api.Tests.Builders.Domain;
 
@@ -9,10 +8,8 @@ namespace SuperLoja.Api.Tests.Domain;
 public class ProdutoValidatorTests
 {
     private readonly ProdutoValidator _sut;
-    private readonly Fixture _fixture;
     public ProdutoValidatorTests()
     {
-        _fixture = new Fixture();
         _sut = new ProdutoValidator();
     }
 
@@ -24,7 +21,7 @@ public class ProdutoValidatorTests
     public void TestValidate_DeveRetornarComErroParaNome_QuandoNomeEInvalido(string nome)
     {
         // Assert
-        var produto = new ProdutoBuilder();
+        var produto = new ProdutoBuilder().BuildDefault().ComNome(nome).Create();
 
         // Act
         var validationResult = _sut.TestValidate(produto);
@@ -42,13 +39,7 @@ public class ProdutoValidatorTests
     public void Validar_DeveRetornarComErro_QuandoMarcaEInvalido(string marca)
     {
         // Assert
-        var produto = new Produto(
-            nome: _fixture.Create<string>(),
-            codigo: _fixture.Create<string>(),
-            marca: marca,
-            quantidade: _fixture.Create<int>(),
-            quantidadeMinima: _fixture.Create<int>(),
-            pesoUnitario: _fixture.Create<float>());
+        var produto = new ProdutoBuilder().BuildDefault().ComMarca(marca).Create();
 
         // Act
         var validationResult = _sut.TestValidate(produto);
@@ -66,13 +57,8 @@ public class ProdutoValidatorTests
     public void Validar_DeveRetornarComErro_QuandoCodigoEInvalido(string codigo)
     {
         // Assert
-        var produto = new Produto(
-            nome: _fixture.Create<string>(),
-            codigo: codigo,
-            marca: _fixture.Create<string>(),
-            quantidade: _fixture.Create<int>(),
-            quantidadeMinima: _fixture.Create<int>(),
-            pesoUnitario: _fixture.Create<float>());
+        var produto = new ProdutoBuilder().BuildDefault().ComCodigo(codigo).Create();
+
         // Act
         var validationResult = _sut.TestValidate(produto);
 
@@ -86,13 +72,7 @@ public class ProdutoValidatorTests
     public void Validar_DeveRetornarComErro_QuandoQuantidadeEMenorQueZero()
     {
         // Arrange
-        var produto = new Produto(
-            nome: _fixture.Create<string>(),
-            codigo: _fixture.Create<string>(),
-            marca: _fixture.Create<string>(),
-            quantidade: -1,
-            quantidadeMinima: _fixture.Create<int>(),
-            pesoUnitario: _fixture.Create<float>());
+        var produto = new ProdutoBuilder().BuildDefault().ComQuantidade(-1).Create();
 
         // Act
         var validationResult = _sut.TestValidate(produto);
@@ -107,13 +87,7 @@ public class ProdutoValidatorTests
     public void TestValidate_DeveSerValido_QuandoProdutoEValido()
     {
         // Arrange
-        var produto = new Produto(
-            nome: _fixture.Create<string>(),
-            codigo: _fixture.Create<string>(),
-            marca: _fixture.Create<string>(),
-            quantidade: 2,
-            quantidadeMinima: _fixture.Create<int>(),
-            pesoUnitario: _fixture.Create<float>());
+        var produto = new ProdutoBuilder().BuildDefault().Create();
 
         // Act
         var validationResult = _sut.TestValidate(produto);

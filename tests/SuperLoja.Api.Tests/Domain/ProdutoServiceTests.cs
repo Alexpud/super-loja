@@ -35,6 +35,7 @@ public class ProdutoServiceTests
     }
 
     [Fact]
+    [Trait("Entidade", "Produto")]
     public void Cadastrar_DeveRetornarComErro_QuandoProdutoComMesmoCodigoExiste()
     {
         // Arrage
@@ -51,6 +52,41 @@ public class ProdutoServiceTests
             Nome = _fixture.Create<string>(),
             Marca = _fixture.Create<string>(),
             Codigo = codigo,
+            PesoUnitario = 1,
+            Quantidade = 1
+        };
+
+        // Act
+        var result = _sut.Cadastrar(dto);
+
+        // Assert
+        Assert.True(result.IsFailed);
+    }
+
+
+    [Fact]
+    [Trait("Entidade", "Produto")]
+    public void Cadastrar_DeveRetornarComErro_QuandoProdutoComMesmoNomeEMarcaExistem()
+    {
+        // Arrage
+        var marca = "marca";
+        var nome = "nome";
+        var produtos = new List<Produto>()
+        {
+            new ProdutoBuilder()
+                .BuildDefault()
+                .ComNome(nome)
+                .ComMarca(marca)
+                .Create()
+        }.BuildMock();
+
+        _produtoRepository.AsQueryable().Returns(produtos);
+
+        var dto = new CriarProdutoDto()
+        {
+            Nome = nome,
+            Marca = marca,
+            Codigo = "codigo",
             PesoUnitario = 1,
             Quantidade = 1
         };
