@@ -8,4 +8,6 @@ public interface IProdutoRepository
     List<Produto> Listar();
     Produto ObterPorId(Guid id);
     Produto ObterPorCodigo(string codigo);
+    void Adicionar(Produto produto);
+    void Commit();
 }

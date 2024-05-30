@@ -5,6 +5,11 @@ namespace SuperLoja.Api.Infrastructure.Repository;
 
 public class ProdutoRepository : IProdutoRepository
 {
+    public void Adicionar(Produto produto)
+    {
+        throw new NotImplementedException();
+    }
+
     public IQueryable<Produto> AsQueryable()
     {
         return new List<Produto>
@@ -17,6 +22,11 @@ public class ProdutoRepository : IProdutoRepository
                 quantidadeMinima: 2,
                 pesoUnitario: 1)
         }.AsQueryable();
+    }
+
+    public void Commit()
+    {
+        throw new NotImplementedException();
     }
 
     public List<Produto> Listar()

@@ -1,6 +1,6 @@
 ﻿namespace SuperLoja.Api.Domain.Dtos;
 
-public class CriarProdutoDto
+public class CadastrarProdutoDto
 {
     public string Nome { get; set; }
 

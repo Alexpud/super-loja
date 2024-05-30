@@ -25,7 +25,7 @@ public class ProdutoServiceTests
     public void Cadastrar_DeveRetornarComErro_QuandoDadosDeCadastroSaoInvalidos()
     {
         // Arrange
-        var dto = new CriarProdutoDto();
+        var dto = new CadastrarProdutoDto();
 
         // Act
         var result = _sut.Cadastrar(dto);
@@ -47,7 +47,7 @@ public class ProdutoServiceTests
 
         _produtoRepository.AsQueryable().Returns(produtos);
 
-        var dto = new CriarProdutoDto()
+        var dto = new CadastrarProdutoDto()
         {
             Nome = _fixture.Create<string>(),
             Marca = _fixture.Create<string>(),
@@ -82,7 +82,7 @@ public class ProdutoServiceTests
 
         _produtoRepository.AsQueryable().Returns(produtos);
 
-        var dto = new CriarProdutoDto()
+        var dto = new CadastrarProdutoDto()
         {
             Nome = nome,
             Marca = marca,
@@ -96,5 +96,30 @@ public class ProdutoServiceTests
 
         // Assert
         Assert.True(result.IsFailed);
+    }
+
+    [Fact]
+    [Trait("Entidade", "Produto")]
+    public void Cadastrar_DeveRetornarProdutoCriado_QuandoForBemSucedido()
+    {
+        // Arrage
+        var produtos = new List<Produto>().BuildMock();
+
+        _produtoRepository.AsQueryable().Returns(produtos);
+
+        var dto = new CadastrarProdutoDto()
+        {
+            Nome = "Algum nome",
+            Marca = "Alguma marca",
+            Codigo = "codigo",
+            PesoUnitario = 1,
+            Quantidade = 1
+        };
+
+        // Act
+        var result = _sut.Cadastrar(dto);
+
+        // Assert
+        Assert.True(result.IsSuccess);
     }
 }

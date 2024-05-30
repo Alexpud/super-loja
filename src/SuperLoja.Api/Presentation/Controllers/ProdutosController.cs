@@ -74,9 +74,9 @@ public class ProdutosController : ControllerBase
     /// <param name="model"></param>
     /// <returns></returns>
     [HttpPost]
-    public ActionResult Cadastrar(CriarProdutoViewModel model)
+    public ActionResult Cadastrar(CadastrarProdutoViewModel model)
     {
-        var dto = _mapper.Map<CriarProdutoDto>(model);
+        var dto = _mapper.Map<CadastrarProdutoDto>(model);
         return Ok(_produtoService.Cadastrar(dto));
     }
 }

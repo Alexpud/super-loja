@@ -14,7 +14,7 @@ public class ProdutoService
         _produtoRepository = produtoRepository;
     }
 
-    public Result Cadastrar(CriarProdutoDto dto)
+    public Result<Produto> Cadastrar(CadastrarProdutoDto dto)
     {
         var produto = new Produto(
             nome: dto.Nome,
@@ -32,7 +32,11 @@ public class ProdutoService
         if (produtoJaExisteResult.IsFailed)
             return produtoJaExisteResult;
 
-        throw new NotImplementedException();
+        _produtoRepository.Adicionar(produto);
+
+        _produtoRepository.Commit();
+
+        return new Result<Produto>().WithValue(produto);
     }
 
     private Result ValidarProdutoJaExistente(Produto produto)

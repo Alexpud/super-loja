@@ -2,7 +2,7 @@
 
 namespace SuperLoja.Api.Presentation.ViewModel;
 
-public class CriarProdutoViewModel
+public class CadastrarProdutoViewModel
 {
     [Required(AllowEmptyStrings = false, ErrorMessage = "A propriedade Nome é obrigatória")]
     public string Nome { get; set; }
