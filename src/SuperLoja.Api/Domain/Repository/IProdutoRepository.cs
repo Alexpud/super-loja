@@ -10,4 +10,5 @@ public interface IProdutoRepository
     Produto ObterPorCodigo(string codigo);
     void Adicionar(Produto produto);
     void Commit();
+    void Remover(Guid id);
 }

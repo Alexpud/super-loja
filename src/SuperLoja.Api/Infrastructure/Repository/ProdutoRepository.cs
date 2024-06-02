@@ -7,7 +7,7 @@ public class ProdutoRepository : IProdutoRepository
 {
     public void Adicionar(Produto produto)
     {
-        throw new NotImplementedException();
+
     }
 
     public IQueryable<Produto> AsQueryable()
@@ -26,7 +26,6 @@ public class ProdutoRepository : IProdutoRepository
 
     public void Commit()
     {
-        throw new NotImplementedException();
     }
 
     public List<Produto> Listar()
@@ -63,5 +62,9 @@ public class ProdutoRepository : IProdutoRepository
             quantidade: 2,
             quantidadeMinima: 2,
             pesoUnitario: 1);
+    }
+
+    public void Remover(Guid id)
+    {
     }
 }

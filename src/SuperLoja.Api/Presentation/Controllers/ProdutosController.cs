@@ -83,4 +83,16 @@ public class ProdutosController : ControllerBase
         var dto = _mapper.Map<CadastrarProdutoDto>(model);
         return Ok(_produtoService.Cadastrar(dto));
     }
+
+    /// <summary>
+    /// Remove um produto
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    [HttpDelete("{id}")]
+    public ActionResult Deletar(Guid id)
+    {
+        _produtoRepository.Remover(id);
+        return NoContent();
+    }
 }
