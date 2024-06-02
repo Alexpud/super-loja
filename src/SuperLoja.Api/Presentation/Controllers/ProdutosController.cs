@@ -1,9 +1,12 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using SuperLoja.Api.Domain.Dtos;
+using SuperLoja.Api.Domain.Entidades;
 using SuperLoja.Api.Domain.Repository;
 using SuperLoja.Api.Domain.Services;
+using SuperLoja.Api.Domain.Specs;
 using SuperLoja.Api.Presentation.ViewModel;
+using System.Linq.Expressions;
 using System.Net;
 
 namespace SuperLoja.Api.Presentation.Controllers;
@@ -62,7 +65,8 @@ public class ProdutosController : ControllerBase
     [ProducesResponseType(typeof(ProdutoDto), (int)HttpStatusCode.OK)]
     public ActionResult<ProdutoDto> ObterPorCodigo(string codigo)
     {
-        var produto = _produtoRepository.ObterPorCodigo(codigo);
+        var produto = _produtoRepository.AsQueryable()
+            .FirstOrDefault(new ProdutoComMesmoCodigoSpecification(codigo).EhSatisfeito);
         if (produto == null)
             return NoContent();
         return Ok();

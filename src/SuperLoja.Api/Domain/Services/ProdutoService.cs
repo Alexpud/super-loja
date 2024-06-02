@@ -2,6 +2,7 @@
 using SuperLoja.Api.Domain.Dtos;
 using SuperLoja.Api.Domain.Entidades;
 using SuperLoja.Api.Domain.Repository;
+using SuperLoja.Api.Domain.Specs;
 
 namespace SuperLoja.Api.Domain.Services;
 
@@ -45,7 +46,7 @@ public class ProdutoService
         bool existeDuplicata = false;
         existeDuplicata = _produtoRepository
             .AsQueryable()
-            .Any(p => p.Codigo == produto.Codigo);
+            .Any(new ProdutoComMesmoCodigoSpecification(produto.Codigo).EhSatisfeito);
 
         if (existeDuplicata)
             result = result.WithError((new Error("Já existe um produto com esse código")));
