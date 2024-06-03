@@ -1,7 +1,4 @@
 version: "1.0"
 
-ide: QDNET
-failThreshold: 0
-
 dotnet:
     solution: SuperLoja.sln
