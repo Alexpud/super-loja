@@ -50,4 +50,4 @@ jobs:
         env:
           QODANA_TOKEN: ${{ secrets.QODANA_TOKEN }}
         with:
-            args: --linter,qodana-cdnet:2023.3.1-eap
+            args: --linter,qodana-cdnet:2024.1-eap
