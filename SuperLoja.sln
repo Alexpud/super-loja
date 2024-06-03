@@ -15,7 +15,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{989D0875-90B5-45FD-83A4-B3F06FBFD6D1}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
-		Qodana.yml = Qodana.yml
+		Qodana.yaml = Qodana.yaml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{7BE252FF-8F00-419A-ADEA-AA10738D07A5}"
