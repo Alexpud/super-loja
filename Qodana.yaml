@@ -1,4 +1,4 @@
 dotnet:
-    solution: MySolution.sln
+    solution: SuperLoja.sln
 
 linter: "jetbrains/qodana-dotnet"
