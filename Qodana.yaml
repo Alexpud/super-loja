@@ -1,1 +1,4 @@
+dotnet:
+    solution: MySolution.sln
+
 linter: "jetbrains/qodana-dotnet"
