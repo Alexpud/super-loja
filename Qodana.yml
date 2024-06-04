@@ -1,4 +1,4 @@
 version: "1.0"
 
 dotnet:
-    solution: ./SuperLoja.sln
+    solution: SuperLoja.sln
