@@ -6,15 +6,9 @@ using SuperLoja.Api.Domain.Specs;
 
 namespace SuperLoja.Api.Domain.Services;
 
-public class ProdutoService
+public class ProdutoService(IProdutoRepository produtoRepository)
 {
-    private IProdutoRepository _produtoRepository;
-
-    public ProdutoService(IProdutoRepository produtoRepository)
-    {
-        _produtoRepository = produtoRepository;
-    }
-
+    private readonly IProdutoRepository _produtoRepository = produtoRepository;
     public Result<Produto> Cadastrar(CadastrarProdutoDto dto)
     {
         var produto = new Produto(

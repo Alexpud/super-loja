@@ -7,7 +7,7 @@ public class ProdutoRepository : IProdutoRepository
 {
     public void Adicionar(Produto produto)
     {
-
+        Console.WriteLine($"Produto com nome {produto.Nome}foi adicionado com sucesso");
     }
 
     public IQueryable<Produto> AsQueryable()
@@ -46,7 +46,7 @@ public class ProdutoRepository : IProdutoRepository
     {
         return new Produto(
             nome: "Produto novo",
-            codigo: "Codigo novo",
+            codigo: codigo,
             marca: "Marca nova",
             quantidade: 2,
             quantidadeMinima: 2,
@@ -55,6 +55,7 @@ public class ProdutoRepository : IProdutoRepository
 
     public Produto ObterPorId(Guid id)
     {
+        Console.WriteLine($"Obtendo produto com ID {id}");
         return new Produto(
             nome: "Produto novo",
             codigo: "Codigo novo",
@@ -66,5 +67,6 @@ public class ProdutoRepository : IProdutoRepository
 
     public void Remover(Guid id)
     {
+        Console.WriteLine($"Removendo produto com ID {id}");
     }
 }
