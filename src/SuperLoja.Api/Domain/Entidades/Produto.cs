@@ -9,7 +9,6 @@ public class Produto : EntidadeBase
     public string Codigo { get; }
     public string Marca { get; }
     public int Quantidade { get; }
-    public int QuantidadeMinima { get; }
     public float PesoUnitario { get; }
 
     public Produto(
@@ -17,14 +16,12 @@ public class Produto : EntidadeBase
         string codigo, 
         string marca, 
         int quantidade, 
-        int quantidadeMinima, 
         float pesoUnitario)
     {
         Nome = nome;
         Codigo = codigo;
         Marca = marca;
         Quantidade = quantidade;
-        QuantidadeMinima = quantidadeMinima;
         PesoUnitario = pesoUnitario;
     }
 

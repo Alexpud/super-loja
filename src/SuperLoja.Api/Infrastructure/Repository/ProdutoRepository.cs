@@ -19,7 +19,6 @@ public class ProdutoRepository : IProdutoRepository
                 codigo: "Codigo novo",
                 marca: "Marca nova",
                 quantidade: 2,
-                quantidadeMinima: 2,
                 pesoUnitario: 1)
         }.AsQueryable();
     }
@@ -37,7 +36,6 @@ public class ProdutoRepository : IProdutoRepository
                 codigo: "Codigo novo",
                 marca: "Marca nova",
                 quantidade: 2,
-                quantidadeMinima: 2,
                 pesoUnitario: 1)
         };
     }
@@ -49,7 +47,6 @@ public class ProdutoRepository : IProdutoRepository
             codigo: codigo,
             marca: "Marca nova",
             quantidade: 2,
-            quantidadeMinima: 2,
             pesoUnitario: 1);
     }
 
@@ -61,7 +58,6 @@ public class ProdutoRepository : IProdutoRepository
             codigo: "Codigo novo",
             marca: "Marca nova",
             quantidade: 2,
-            quantidadeMinima: 2,
             pesoUnitario: 1);
     }
 

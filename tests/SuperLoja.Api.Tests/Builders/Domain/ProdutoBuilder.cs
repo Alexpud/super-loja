@@ -16,7 +16,6 @@ public class ProdutoBuilder : BaseBuilder<Produto, ProdutoBuilder>
             codigo: _codigo,
             marca: _marca,
             quantidade: _quantidade,
-            quantidadeMinima: _fixture.Create<int>(),
             pesoUnitario: _fixture.Create<float>());
     }
 

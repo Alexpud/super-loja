@@ -16,7 +16,6 @@ public class ProdutoService(IProdutoRepository produtoRepository)
             codigo: dto.Codigo,
             marca: dto.Marca,
             quantidade: dto.Quantidade,
-            quantidadeMinima: dto.QuantidadeMinima,
             pesoUnitario: dto.PesoUnitario);
 
         var validationResult = produto.Validar();
