@@ -9,7 +9,7 @@ public abstract class EntidadeBase
     public DateTime? UltimaAtualizacaoEm { get; private set; }
     public abstract ValidationResult Validar();
 
-    public EntidadeBase()
+    protected EntidadeBase()
     {
         Id = Guid.NewGuid();
         CriadoEm = DateTime.Now;

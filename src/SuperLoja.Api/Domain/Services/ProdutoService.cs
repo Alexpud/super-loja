@@ -37,8 +37,7 @@ public class ProdutoService(IProdutoRepository produtoRepository)
     private Result ValidarProdutoJaExistente(Produto produto)
     {
         var result = new Result();
-        bool existeDuplicata = false;
-        existeDuplicata = _produtoRepository
+        var existeDuplicata = _produtoRepository
             .AsQueryable()
             .Any(new ProdutoComMesmoCodigoSpecification(produto.Codigo).EhSatisfeito);
 

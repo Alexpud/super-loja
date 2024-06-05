@@ -5,12 +5,12 @@ namespace SuperLoja.Api.Domain.Entidades;
 
 public class Produto : EntidadeBase
 {
-    public string Nome { get; private set; }
-    public string Codigo { get; private set; }
-    public string Marca { get; private set; }
-    public int Quantidade { get; private set; }
-    public int QuantidadeMinima { get; private set; }
-    public float PesoUnitario { get; private set; }
+    public string Nome { get; }
+    public string Codigo { get; }
+    public string Marca { get; }
+    public int Quantidade { get; }
+    public int QuantidadeMinima { get; }
+    public float PesoUnitario { get; }
 
     public Produto(
         string nome, 
@@ -18,7 +18,7 @@ public class Produto : EntidadeBase
         string marca, 
         int quantidade, 
         int quantidadeMinima, 
-        float pesoUnitario) : base()
+        float pesoUnitario)
     {
         Nome = nome;
         Codigo = codigo;

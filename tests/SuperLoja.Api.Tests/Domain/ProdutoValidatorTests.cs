@@ -1,5 +1,4 @@
-﻿using AutoFixture;
-using FluentValidation.TestHelper;
+﻿using FluentValidation.TestHelper;
 using SuperLoja.Api.Domain.Validator;
 using SuperLoja.Api.Tests.Builders.Domain;
 
