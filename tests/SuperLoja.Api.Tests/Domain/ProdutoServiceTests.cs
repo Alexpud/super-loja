@@ -42,7 +42,7 @@ public class ProdutoServiceTests
         var codigo = "codigo";
         var produtos = new List<Produto>()
         {
-            new ProdutoBuilder().BuildDefault().ComCodigo(codigo).Create()
+            new ProdutoBuilder().ComCodigo(codigo).Build()
         }.BuildMock();
 
         _produtoRepository.AsQueryable().Returns(produtos);
@@ -74,10 +74,9 @@ public class ProdutoServiceTests
         var produtos = new List<Produto>()
         {
             new ProdutoBuilder()
-                .BuildDefault()
                 .ComNome(nome)
                 .ComMarca(marca)
-                .Create()
+                .Build()
         }.BuildMock();
 
         _produtoRepository.AsQueryable().Returns(produtos);

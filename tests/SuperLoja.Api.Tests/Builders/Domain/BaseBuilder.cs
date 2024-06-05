@@ -4,7 +4,7 @@ public abstract class BaseBuilder<TEntity, TBuilder>
 {
     protected TEntity _object;
     
-    public abstract TBuilder BuildDefault();
+    public abstract TBuilder ComPropriedadesPreenchidas();
 
-    public virtual TEntity Create() => _object;
+    public virtual TEntity Build() => _object;
 }

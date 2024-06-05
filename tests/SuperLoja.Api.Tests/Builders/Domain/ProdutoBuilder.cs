@@ -6,18 +6,10 @@ namespace SuperLoja.Api.Tests.Builders.Domain;
 public class ProdutoBuilder : BaseBuilder<Produto, ProdutoBuilder>
 {
     private readonly Fixture _fixture = new();
-    private string? _codigo, _nome, _marca;
+    private string _codigo, _nome, _marca;
     private int _quantidade;
 
-    public override ProdutoBuilder BuildDefault()
-    {
-        _codigo = _fixture.Create<string>();
-        _nome = _fixture.Create<string>();
-        _marca = _fixture.Create<string>();
-        return this;
-    }
-
-    public override Produto Create()
+    public override Produto Build()
     {
         return new Produto(
             nome: _nome,
@@ -28,20 +20,20 @@ public class ProdutoBuilder : BaseBuilder<Produto, ProdutoBuilder>
             pesoUnitario: _fixture.Create<float>());
     }
 
-    public ProdutoBuilder ComCodigo(string? codigo)
+    public ProdutoBuilder ComCodigo(string codigo)
     {
         _codigo = codigo;
         return this;
     }
 
 
-    public ProdutoBuilder ComNome(string? nome)
+    public ProdutoBuilder ComNome(string nome)
     {
         _nome = nome;
         return this;
     }
 
-    public ProdutoBuilder ComMarca(string? marca)
+    public ProdutoBuilder ComMarca(string marca)
     {
         _marca = marca;
         return this;
@@ -50,6 +42,14 @@ public class ProdutoBuilder : BaseBuilder<Produto, ProdutoBuilder>
     public ProdutoBuilder ComQuantidade(int quantidade)
     {
         _quantidade = quantidade;
+        return this;
+    }
+
+    public override ProdutoBuilder ComPropriedadesPreenchidas()
+    {
+        _codigo = _fixture.Create<string>();
+        _nome = _fixture.Create<string>();
+        _marca = _fixture.Create<string>();
         return this;
     }
 }
