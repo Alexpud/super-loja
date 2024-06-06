@@ -2,3 +2,6 @@ version: "1.0"
 
 dotnet:
     solution: ./SuperLoja.sln
+
+profile:
+    path: profile.yaml
