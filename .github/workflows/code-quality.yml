@@ -24,4 +24,4 @@ jobs:
         env:
           QODANA_TOKEN: ${{ secrets.QODANA_TOKEN }}
         with:
-            args: --linter,jetbrains/qodana-cdnet:2024.1-eap,--solution, SuperLoja.sln
+            args: --linter,jetbrains/qodana-cdnet:2024.1-eap,--solution, SuperLoja.sln, --profile-name, profile.yaml
