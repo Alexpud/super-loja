@@ -1,7 +1,12 @@
 version: "1.0"
 
 dotnet:
-    solution: ./SuperLoja.sln
+    solution: SuperLoja.sln
 
 profile:
-    path: profile.yaml
+  name: qodana.starter
+  
+exclude:
+  - name: All
+    paths:
+      - src/SuperLoja.Api/Domain/Dtos
