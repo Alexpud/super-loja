@@ -11,7 +11,7 @@ public class ProdutoComMesmoCodigoSpecificationTests
         // Arrange
         var lista = new List<Produto>()
         {
-            new ProdutoBuilder().BuildDefault().ComCodigo("codigo").Create()
+            new ProdutoBuilder().ComCodigo("codigo").Build()
         };
 
         // Act

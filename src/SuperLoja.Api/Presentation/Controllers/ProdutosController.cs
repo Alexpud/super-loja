@@ -11,22 +11,12 @@ namespace SuperLoja.Api.Presentation.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class ProdutosController : ControllerBase
+public class ProdutosController(IProdutoRepository produtoRepository, ProdutoService produtoService, IMapper mapper) : ControllerBase
 {
-    private readonly IProdutoRepository _produtoRepository;
-    private readonly ProdutoService _produtoService;
-    private readonly IMapper _mapper;
-
-    public ProdutosController(
-        IProdutoRepository produtoRepository, 
-        ProdutoService produtoService,
-        IMapper mapper)
-    {
-        _produtoRepository = produtoRepository;
-        _produtoService = produtoService;
-        _mapper = mapper;
-    }
-
+    private readonly IProdutoRepository _produtoRepository = produtoRepository;
+    private readonly ProdutoService _produtoService = produtoService;
+    private readonly IMapper _mapper = mapper;
+    
     /// <summary>
     /// Lista todos os produtos disponiveis
     /// </summary>
@@ -40,7 +30,7 @@ public class ProdutosController : ControllerBase
     }
 
     /// <summary>
-    /// Obtém produto pelo Id dele
+    /// Obtï¿½m produto pelo Id dele
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
@@ -55,7 +45,7 @@ public class ProdutosController : ControllerBase
     }
 
     /// <summary>
-    /// Obtém o produto pelo código
+    /// Obtï¿½m o produto pelo cï¿½digo
     /// </summary>
     /// <param name="codigo"></param>
     /// <returns></returns>

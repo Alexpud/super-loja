@@ -4,12 +4,12 @@ namespace SuperLoja.Api.Domain.Entidades;
 
 public abstract class EntidadeBase
 {
-    public Guid Id { get; set; }
-    public DateTime CriadoEm { get; set; }
-    public DateTime? UltimaAtualizacaoEm { get; set; }
+    public Guid Id { get; }
+    public DateTime CriadoEm { get; }
+    public DateTime? UltimaAtualizacaoEm { get; private set; }
     public abstract ValidationResult Validar();
 
-    public EntidadeBase()
+    protected EntidadeBase()
     {
         Id = Guid.NewGuid();
         CriadoEm = DateTime.Now;
