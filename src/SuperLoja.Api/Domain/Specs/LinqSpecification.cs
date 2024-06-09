@@ -4,7 +4,7 @@ namespace SuperLoja.Api.Domain.Specs;
 
 public abstract class LinqSpecification<T> : ISpecification<T> where T : class
 {
-    public abstract Expression<Func<T, bool>> GetExpression();
+    protected abstract Expression<Func<T, bool>> GetExpression();
 
     public bool EhSatisfeito(T parametro)
     {
