@@ -3,6 +3,7 @@ using SuperLoja.Api.Domain.Dtos;
 using SuperLoja.Api.Domain.Entidades;
 using SuperLoja.Api.Domain.Repository;
 using SuperLoja.Api.Domain.Specs;
+using SuperLoja.Api.Domain.Specs.Produtos;
 
 namespace SuperLoja.Api.Domain.Services;
 
