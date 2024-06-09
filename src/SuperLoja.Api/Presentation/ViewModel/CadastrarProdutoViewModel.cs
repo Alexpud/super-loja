@@ -21,5 +21,5 @@ public class CadastrarProdutoViewModel
     [Range(0, int.MaxValue)]
     public int QuantidadeMinima { get; set; }
     
-    public float PesoUnitario { get; set; }
+    public float? PesoUnitario { get; set; }
 }

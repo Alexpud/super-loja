@@ -1,6 +1,8 @@
 using AutoMapper;
+using FluentResults;
 using Microsoft.AspNetCore.Mvc;
 using SuperLoja.Api.Domain.Dtos;
+using SuperLoja.Api.Domain.Entidades;
 using SuperLoja.Api.Domain.Repository;
 using SuperLoja.Api.Domain.Services;
 using SuperLoja.Api.Domain.Specs;
@@ -69,6 +71,7 @@ public class ProdutosController(IProdutoRepository produtoRepository, ProdutoSer
     /// <param name="model"></param>
     /// <returns></returns>
     [HttpPost]
+    [ProducesResponseType(typeof(Result<Produto>), (int)HttpStatusCode.OK)]
     public ActionResult Cadastrar(CadastrarProdutoViewModel model)
     {
         var dto = _mapper.Map<CadastrarProdutoDto>(model);
