@@ -1,7 +1,7 @@
 using SuperLoja.Api.Domain.Entidades;
 using System.Linq.Expressions;
 
-namespace SuperLoja.Api.Domain.Specs;
+namespace SuperLoja.Api.Domain.Specs.Produtos;
 
 public class ProdutoComMesmaMarcaSpecification(string marca) : LinqSpecification<Produto>
 {
