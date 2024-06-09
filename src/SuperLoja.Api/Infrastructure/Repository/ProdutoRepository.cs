@@ -1,5 +1,6 @@
 ﻿using SuperLoja.Api.Domain.Entidades;
 using SuperLoja.Api.Domain.Repository;
+using SuperLoja.Api.Domain.Specs;
 
 namespace SuperLoja.Api.Infrastructure.Repository;
 
@@ -40,26 +41,11 @@ public class ProdutoRepository : IProdutoRepository
         };
     }
 
-    public Produto ObterPorCodigo(string codigo)
+    public IQueryable<Produto> ObterPorSpecification(ISpecification<Produto> specification)
     {
-        return new Produto(
-            nome: "Produto novo",
-            codigo: codigo,
-            marca: "Marca nova",
-            quantidade: 2,
-            pesoUnitario: 1);
+        return AsQueryable().Where(specification.EhSatisfeito).AsQueryable();
     }
 
-    public Produto ObterPorId(Guid id)
-    {
-        Console.WriteLine($"Obtendo produto com ID {id}");
-        return new Produto(
-            nome: "Produto novo",
-            codigo: "Codigo novo",
-            marca: "Marca nova",
-            quantidade: 2,
-            pesoUnitario: 1);
-    }
 
     public void Remover(Guid id)
     {

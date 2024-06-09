@@ -5,6 +5,7 @@ using SuperLoja.Api.Domain.Dtos;
 using SuperLoja.Api.Domain.Entidades;
 using SuperLoja.Api.Domain.Repository;
 using SuperLoja.Api.Domain.Services;
+using SuperLoja.Api.Domain.Specs;
 using SuperLoja.Api.Tests.Builders.Domain;
 
 namespace SuperLoja.Api.Tests.Domain;
@@ -45,7 +46,9 @@ public class ProdutoServiceTests
             new ProdutoBuilder().ComCodigo(codigo).Build()
         }.BuildMock();
 
-        _produtoRepository.AsQueryable().Returns(produtos);
+        _produtoRepository
+            .ObterPorSpecification(Arg.Any<ISpecification<Produto>>())
+            .Returns(produtos);
 
         var dto = new CadastrarProdutoDto()
         {
@@ -77,9 +80,11 @@ public class ProdutoServiceTests
                 .ComNome(nome)
                 .ComMarca(marca)
                 .Build()
-        }.BuildMock();
+        }.AsQueryable();
 
-        _produtoRepository.AsQueryable().Returns(produtos);
+        _produtoRepository
+            .ObterPorSpecification(Arg.Any<ISpecification<Produto>>())
+            .Returns(produtos);
 
         var dto = new CadastrarProdutoDto()
         {
@@ -102,9 +107,11 @@ public class ProdutoServiceTests
     public void Cadastrar_DeveRetornarProdutoCriado_QuandoForBemSucedido()
     {
         // Arrage
-        var produtos = new List<Produto>().BuildMock();
+        var produtos = new List<Produto>().AsQueryable();
 
-        _produtoRepository.AsQueryable().Returns(produtos);
+        _produtoRepository
+            .ObterPorSpecification(Arg.Any<ISpecification<Produto>>())
+            .Returns(produtos);
 
         var dto = new CadastrarProdutoDto()
         {

@@ -4,6 +4,7 @@ using SuperLoja.Api.Domain.Dtos;
 using SuperLoja.Api.Domain.Repository;
 using SuperLoja.Api.Domain.Services;
 using SuperLoja.Api.Domain.Specs;
+using SuperLoja.Api.Domain.Specs.Produtos;
 using SuperLoja.Api.Presentation.ViewModel;
 using System.Net;
 
@@ -38,7 +39,8 @@ public class ProdutosController(IProdutoRepository produtoRepository, ProdutoSer
     [ProducesResponseType(typeof(ProdutoDto), (int)HttpStatusCode.OK)]
     public ActionResult<ProdutoDto> ObterPorId(Guid id)
     {
-        var produto = _produtoRepository.ObterPorId(id);
+        var produto = _produtoRepository.AsQueryable()
+            .FirstOrDefault(p => p.Id == id);
         if (produto == null)
             return NoContent();
         return Ok();
@@ -53,8 +55,9 @@ public class ProdutosController(IProdutoRepository produtoRepository, ProdutoSer
     [ProducesResponseType(typeof(ProdutoDto), (int)HttpStatusCode.OK)]
     public ActionResult<ProdutoDto> ObterPorCodigo(string codigo)
     {
-        var produto = _produtoRepository.AsQueryable()
-            .FirstOrDefault(new ProdutoComMesmoCodigoSpecification(codigo).EhSatisfeito);
+        var produto = _produtoRepository
+            .ObterPorSpecification(new ProdutoComMesmoCodigoSpecification(codigo))
+            .FirstOrDefault();
         if (produto == null)
             return NoContent();
         return Ok();

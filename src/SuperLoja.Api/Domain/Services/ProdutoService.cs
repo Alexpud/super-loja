@@ -3,6 +3,7 @@ using SuperLoja.Api.Domain.Dtos;
 using SuperLoja.Api.Domain.Entidades;
 using SuperLoja.Api.Domain.Repository;
 using SuperLoja.Api.Domain.Specs;
+using SuperLoja.Api.Domain.Specs.Produtos;
 
 namespace SuperLoja.Api.Domain.Services;
 
@@ -36,17 +37,20 @@ public class ProdutoService(IProdutoRepository produtoRepository)
     private Result ValidarProdutoJaExistente(Produto produto)
     {
         var result = new Result();
+        var produtoComMesmoCodigoSpec = new ProdutoComMesmoCodigoSpecification(produto.Codigo);
         var existeDuplicata = _produtoRepository
-            .AsQueryable()
-            .Any(new ProdutoComMesmoCodigoSpecification(produto.Codigo).EhSatisfeito);
-
+            .ObterPorSpecification(produtoComMesmoCodigoSpec)
+            .Any();
         if (existeDuplicata)
             result = result.WithError((new Error("Já existe um produto com esse código")));
 
+        var mesmaMarca = new ProdutoComMesmaMarcaSpecification(produto.Marca);
+        var mesmoNome = new ProdutoComMesmoNomeSpecification(produto.Nome);
+        var mesmaMarcaEProdutoSpec = new AndSpecification<Produto>(mesmoNome, mesmaMarca);
         existeDuplicata = _produtoRepository
-            .AsQueryable()
-            .Any(p => p.Nome == produto.Nome && p.Marca == produto.Marca);
-        
+            .ObterPorSpecification(mesmaMarcaEProdutoSpec)
+            .Any();
+                    
         if (existeDuplicata)
             result = result.WithError(new Error("Já existe um produto com essa marca e nome"));
 
