@@ -6,5 +6,5 @@ public abstract class BaseBuilder<TEntity, TBuilder>
     
     public abstract TBuilder ComPropriedadesPreenchidas();
 
-    public virtual TEntity Build() => _object;
+    public abstract TEntity Build();
 }

@@ -13,8 +13,7 @@ Como um administrador da plataforma, gostaria de poder cadastrar os produtos com
 
 ## Como adminsitrador gostaria de poder cadastrar promoções para produtos
 
-Como um administrador da plataforma, gostaria de poder cadastrar promoções para produtos, com os valores do desconto sendo em porcentagem, maiores que zero e
-menores que 100. Ao criar uma promoção, ela deve vir desativada
+Como um administrador da plataforma, gostaria de poder cadastrar promoções para produtos, com os valores do desconto sendo em porcentagem, maiores que zero e menores que 100. Ao criar uma promoção, ela deve vir desativada
 
 ## Não será possivel alterar o valor da promoção já cadastrada
 
