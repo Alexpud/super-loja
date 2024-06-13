@@ -2,32 +2,32 @@ using SuperLoja.Api.Domain.Entidades;
 using SuperLoja.Api.Tests.Builders.Domain;
 
 namespace SuperLoja.Api.Tests.Builders;
-public class PromocaoBuilder : BaseBuilder<Promocao, PromocaoBuilder>
+public class VoucherBUilder : BaseBuilder<Voucher, VoucherBUilder>
 {
     private bool _ativa;
     private DateTime _dataExpiracao;
     private float _taxa;
     
-    public override PromocaoBuilder ComPropriedadesPreenchidas()
+    public override VoucherBUilder ComPropriedadesPreenchidas()
     {
         throw new NotImplementedException();
     }
 
-    public PromocaoBuilder EhAtiva(bool ehAtivada)
+    public VoucherBUilder EhAtiva(bool ehAtivada)
     {
         _ativa = ehAtivada;
         return this;
     }
 
-    public PromocaoBuilder ComDataExpiracao(DateTime dateTime)
+    public VoucherBUilder ComDataExpiracao(DateTime dateTime)
     {
         _dataExpiracao = dateTime;
         return this;
     }
 
-    public override Promocao Build()
+    public override Voucher Build()
     {
-        return new Promocao(
+        return new Voucher(
             ativa: _ativa,
             dataExpiracao: _dataExpiracao,
             taxa: _taxa

@@ -1,20 +1,20 @@
 using SuperLoja.Api.Domain.Entidades;
 using SuperLoja.Api.Tests.Builders;
 
-namespace SuperLoja.Api.Tests.Domain.Specs.Promocoes;
+namespace SuperLoja.Api.Tests.Domain.Specs.Vouchers;
 
-public class PromocaoDisponivelSpecificationTests 
+public class VoucherDisponivelSpecificationTests 
 {
     [Fact]
     public void EhValido_NaoDeveRetornarPromocoes_QuandoNaoHouverPromocoesDisponiveis()
     {
         // Arrange
         var date = new DateTime(2024, 1, 1);
-        var spec = new PromocaoDisponivelSpecification(date);
-        var promocoes = new List<Promocao>()
+        var spec = new VoucherDisponivelSpecification(date);
+        var promocoes = new List<Voucher>()
         {
-            new PromocaoBuilder().EhAtiva(true).ComDataExpiracao(date.AddMonths(-1)).Build(),
-            new PromocaoBuilder().EhAtiva(false).ComDataExpiracao(date.AddMonths(4)).Build()
+            new VoucherBUilder().EhAtiva(true).ComDataExpiracao(date.AddMonths(-1)).Build(),
+            new VoucherBUilder().EhAtiva(false).ComDataExpiracao(date.AddMonths(4)).Build()
         };
 
         // Act
@@ -29,11 +29,11 @@ public class PromocaoDisponivelSpecificationTests
     {
         // Arrange
         var date = new DateTime(2024, 1, 1);
-        var spec = new PromocaoDisponivelSpecification(date);
-        var promocoes = new List<Promocao>()
+        var spec = new VoucherDisponivelSpecification(date);
+        var promocoes = new List<Voucher>()
         {
-            new PromocaoBuilder().EhAtiva(true).ComDataExpiracao(date.AddMonths(1)).Build(),
-            new PromocaoBuilder().EhAtiva(false).ComDataExpiracao(date.AddMonths(4)).Build()
+            new VoucherBUilder().EhAtiva(true).ComDataExpiracao(date.AddMonths(1)).Build(),
+            new VoucherBUilder().EhAtiva(false).ComDataExpiracao(date.AddMonths(4)).Build()
         };
 
         // Act

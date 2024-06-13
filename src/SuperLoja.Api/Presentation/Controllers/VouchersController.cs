@@ -3,22 +3,22 @@ using Microsoft.AspNetCore.Mvc;
 namespace SuperLoja.Api.Presentation.Controllers;
 
 [ApiController]
-public class PromocoesController : ControllerBase
+public class VouchersController : ControllerBase
 {
         
     /// <summary>
-    /// Lista as promocoes disponiveis cadastradas de acordo com os filtros
+    /// Lista as vouchers disponiveis cadastradas de acordo com os filtros
     /// </summary>
     /// <returns></returns>
     [HttpGet]
-    public ActionResult ListarPromocoesDisponiveis()
+    public ActionResult ListarVouchersAplicaveis()
     {
         return Ok();
     }
 
         
     /// <summary>
-    /// Cadastra uma promocao
+    /// Cadastra um voucher
     /// </summary>
     /// <returns></returns>
     [HttpPost]
@@ -29,11 +29,11 @@ public class PromocoesController : ControllerBase
 
         
     /// <summary>
-    /// Desativara as promocoes recebidas
+    /// Desativara as vouchers recebidas
     /// </summary>
     /// <returns></returns>
     [HttpPost]
-    public ActionResult DesativaPromocoes()
+    public ActionResult Desativavouchers()
     {
         return Ok();
     }

@@ -2,7 +2,7 @@ using FluentValidation.Results;
 
 namespace SuperLoja.Api.Domain.Entidades;
 
-public class Promocao(bool ativa, DateTime dataExpiracao, float taxa) : EntidadeBase
+public class Voucher(bool ativa, DateTime dataExpiracao, float taxa) : EntidadeBase
 {
     public bool Ativa { get; set; } = ativa;
     public DateTime DataExpiracao { get; } = dataExpiracao;
