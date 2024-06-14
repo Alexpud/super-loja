@@ -3,17 +3,19 @@ using Microsoft.AspNetCore.Mvc;
 namespace SuperLoja.Api.Presentation.Controllers;
 
 [ApiController]
-public class VouchersController : ControllerBase
+public class VouchersController(IVoucherRepository repository) : ControllerBase
 {
+    private readonly IVoucherRepository _repository = repository;
         
     /// <summary>
-    /// Lista as vouchers disponiveis cadastradas de acordo com os filtros
+    /// Lista as vouchers aplicaveis para o periodo
     /// </summary>
     /// <returns></returns>
     [HttpGet]
-    public ActionResult ListarVouchersAplicaveis()
+    public ActionResult ListarVouchersAplicaveis(DateTime periodo)
     {
-        return Ok();
+        var spec = new VoucherAplicavelSpecification(periodo);
+        return Ok(_repository.ObterPorSpecification(spec));
     }
 
         

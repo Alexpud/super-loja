@@ -21,7 +21,7 @@ public class ProdutoService(IProdutoRepository produtoRepository)
 
         var validationResult = produto.Validar();
         if (!validationResult.IsValid)
-            return new Result().WithError(new Error("Dados invalidos de produto"));
+            return new Result().WithError(new Error("Dados invalidos de cadastro produto"));
 
         var produtoJaExisteResult = ValidarProdutoJaExistente(produto);
         if (produtoJaExisteResult.IsFailed)

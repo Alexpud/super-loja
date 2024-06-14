@@ -1,7 +1,0 @@
-name: "Custom Profile"
-baseProfile: "empty"
-
-inspections:
-  - group: ALL
-    ignore:
-      - "dtos/**"
