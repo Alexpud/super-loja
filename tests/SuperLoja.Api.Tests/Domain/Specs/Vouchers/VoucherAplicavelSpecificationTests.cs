@@ -1,4 +1,5 @@
 using SuperLoja.Api.Domain.Entidades;
+using SuperLoja.Api.Domain.Specs.Vouchers;
 using SuperLoja.Api.Tests.Builders;
 
 namespace SuperLoja.Api.Tests.Domain.Specs.Vouchers;

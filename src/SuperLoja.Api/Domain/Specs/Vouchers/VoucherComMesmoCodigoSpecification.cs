@@ -3,12 +3,12 @@ using SuperLoja.Api.Domain.Entidades;
 
 namespace SuperLoja.Api.Domain.Specs.Vouchers;
 
-public class VoucherAplicavelSpecification(DateTime data) : LinqSpecification<Voucher>
+public class VoucherComMesmoCodigoSpecification(string codigo) : LinqSpecification<Voucher>
 {
-    private readonly DateTime _date = data;
-
+    private string _codigo = codigo;
     protected override Expression<Func<Voucher, bool>> GetExpression()
     {
-        return p => p.EhAplicavel(_date);
+        return p => p.Codigo == _codigo;
     }
+
 }

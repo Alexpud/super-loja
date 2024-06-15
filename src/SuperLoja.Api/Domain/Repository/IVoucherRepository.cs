@@ -1,8 +1,7 @@
 using SuperLoja.Api.Domain.Entidades;
-using SuperLoja.Api.Domain.Specs;
 
-public interface IVoucherRepository 
+namespace SuperLoja.Api.Domain.Repository;
+
+public interface IVoucherRepository : IRepository<Voucher>
 {
-    IQueryable<Voucher> AsQueryable();
-    IQueryable<Voucher> ObterPorSpecification(ISpecification<Voucher> specification);
 }

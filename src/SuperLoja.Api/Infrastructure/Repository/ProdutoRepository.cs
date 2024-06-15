@@ -24,9 +24,7 @@ public class ProdutoRepository : IProdutoRepository
         }.AsQueryable();
     }
 
-    public void Commit()
-    {
-    }
+    public void Commit() {}
 
     public List<Produto> Listar()
     {

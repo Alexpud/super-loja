@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using SuperLoja.Api.Domain.Repository;
+using SuperLoja.Api.Domain.Specs.Vouchers;
 
 namespace SuperLoja.Api.Presentation.Controllers;
 
