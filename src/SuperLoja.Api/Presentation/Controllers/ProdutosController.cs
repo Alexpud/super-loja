@@ -12,8 +12,8 @@ using System.Net;
 
 namespace SuperLoja.Api.Presentation.Controllers;
 
-[Route("api/[controller]")]
 [ApiController]
+[Route("api/[controller]")]
 public class ProdutosController(IProdutoRepository produtoRepository, ProdutoService produtoService, IMapper mapper) : ControllerBase
 {
     private readonly IProdutoRepository _produtoRepository = produtoRepository;

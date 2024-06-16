@@ -8,11 +8,12 @@ using SuperLoja.Api.Domain.Specs.Vouchers;
 namespace SuperLoja.Api.Presentation.Controllers;
 
 [ApiController]
+[Route("api/[controller]")]
 public class VouchersController(IVoucherRepository repository, IMapper mapper) : ControllerBase
 {
     private readonly IVoucherRepository _repository = repository;
     private readonly IMapper _mapper = mapper;
-    
+
     /// <summary>
     /// Lista as vouchers aplicaveis para o periodo
     /// </summary>
