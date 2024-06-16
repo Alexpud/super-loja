@@ -12,6 +12,7 @@ public class VoucherValidatorTests
     [Theory]
     [InlineData(-1)]
     [InlineData(0)]
+    [InlineData(2)]
     public void TestValidate_DeveTerErroParaTaxa_QuandoElaForInvalida(float taxa)
     {
         // Arrange

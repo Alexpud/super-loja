@@ -1,3 +1,4 @@
+using AutoMapper;
 using NSubstitute;
 using SuperLoja.Api.Domain.Dtos;
 using SuperLoja.Api.Domain.Entidades;
@@ -12,10 +13,12 @@ public class VoucherServiceTests
 {
     private readonly VoucherService _sut;
     private readonly IVoucherRepository _voucherRepository;
+    private readonly IMapper _mapper;
     public VoucherServiceTests()
     {
         _voucherRepository = Substitute.For<IVoucherRepository>();
-        _sut = new VoucherService(_voucherRepository);
+        _mapper = Substitute.For<IMapper>();
+        _sut = new VoucherService(_voucherRepository, _mapper);
     }
 
     [Fact]
@@ -71,10 +74,12 @@ public class VoucherServiceTests
         var dto = new CadastrarVoucherDto
         {
             DataExpiracao = new DateTime(),
-            Taxa = 2,
+            Taxa = 0.5f,
             Codigo = "CODIGO"
         };   
         
+        _mapper.Map<VoucherDto>(Arg.Any<Voucher>()).Returns(new VoucherDto());
+
         // Act
         var result = _sut.Cadastrar(dto);
 

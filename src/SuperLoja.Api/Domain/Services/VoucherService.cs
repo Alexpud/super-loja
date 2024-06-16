@@ -1,3 +1,4 @@
+using AutoMapper;
 using FluentResults;
 using SuperLoja.Api.Domain.Dtos;
 using SuperLoja.Api.Domain.Entidades;
@@ -6,10 +7,11 @@ using SuperLoja.Api.Domain.Specs.Vouchers;
 
 namespace SuperLoja.Api.Domain.Services;
 
-public class VoucherService(IVoucherRepository voucherRepository)
+public class VoucherService(IVoucherRepository voucherRepository, IMapper mapper)
 {
     private readonly IVoucherRepository _voucherRepository = voucherRepository;
-    public Result<Voucher> Cadastrar(CadastrarVoucherDto dto)
+    private readonly IMapper _mapper = mapper;
+    public Result<VoucherDto> Cadastrar(CadastrarVoucherDto dto)
     {
         var voucher = new Voucher(
             ativo: false,
@@ -23,12 +25,12 @@ public class VoucherService(IVoucherRepository voucherRepository)
 
         _voucherRepository.Adicionar(voucher);
         _voucherRepository.Commit();
-        return new Result<Voucher>().WithValue(voucher);
+        return new Result<VoucherDto>().WithValue(_mapper.Map<VoucherDto>(voucher));
     }
 
-    private Result<Voucher> ValidarCadastroVoucher(Voucher voucher)
+    private Result<VoucherDto> ValidarCadastroVoucher(Voucher voucher)
     {
-        var result = new Result<Voucher>();
+        var result = new Result<VoucherDto>();
         var validation = voucher.Validar();
         if (!validation.IsValid)
             result = result.WithError("Dados invalidos de cadastro de voucher");
