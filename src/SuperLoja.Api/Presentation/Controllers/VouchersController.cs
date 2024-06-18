@@ -1,17 +1,21 @@
 using System.Net;
 using AutoMapper;
+using FluentResults;
 using Microsoft.AspNetCore.Mvc;
 using SuperLoja.Api.Domain.Dtos;
 using SuperLoja.Api.Domain.Repository;
+using SuperLoja.Api.Domain.Services;
 using SuperLoja.Api.Domain.Specs.Vouchers;
+using SuperLoja.Api.Presentation.ViewModels;
 
 namespace SuperLoja.Api.Presentation.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class VouchersController(IVoucherRepository repository, IMapper mapper) : ControllerBase
+public class VouchersController(IVoucherRepository repository, VoucherService voucherService, IMapper mapper) : ControllerBase
 {
     private readonly IVoucherRepository _repository = repository;
+    private readonly VoucherService _voucherService = voucherService;
     private readonly IMapper _mapper = mapper;
 
     /// <summary>
@@ -33,9 +37,11 @@ public class VouchersController(IVoucherRepository repository, IMapper mapper) :
     /// </summary>
     /// <returns></returns>
     [HttpPost]
-    public ActionResult Cadastrar()
+    [ProducesResponseType(typeof(VoucherDto), (int) HttpStatusCode.OK)]
+    public ActionResult Cadastrar(CadastrarVoucherViewModel model)
     {
-        return Ok();
+        var dto = _mapper.Map<CadastrarVoucherDto>(model);
+        return Ok(_voucherService.Cadastrar(dto));
     }
 
         
@@ -43,9 +49,10 @@ public class VouchersController(IVoucherRepository repository, IMapper mapper) :
     /// Desativara as vouchers recebidas
     /// </summary>
     /// <returns></returns>
-    [HttpPost]
-    public ActionResult Desativavouchers()
+    [HttpPatch]
+    [ProducesResponseType(typeof(Result), (int) HttpStatusCode.OK)]
+    public ActionResult Desativavouchers(DesativarVouchersViewModel model)
     {
-        return Ok();
+        return Ok(_voucherService.Desativar(model.VoucherIds));
     }
 }

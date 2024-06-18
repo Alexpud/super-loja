@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace SuperLoja.Api.Presentation.ViewModel;
+namespace SuperLoja.Api.Presentation.ViewModels;
 
 public class CadastrarProdutoViewModel
 {

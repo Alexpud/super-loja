@@ -5,9 +5,8 @@ using SuperLoja.Api.Domain.Dtos;
 using SuperLoja.Api.Domain.Entidades;
 using SuperLoja.Api.Domain.Repository;
 using SuperLoja.Api.Domain.Services;
-using SuperLoja.Api.Domain.Specs;
 using SuperLoja.Api.Domain.Specs.Produtos;
-using SuperLoja.Api.Presentation.ViewModel;
+using SuperLoja.Api.Presentation.ViewModels;
 using System.Net;
 
 namespace SuperLoja.Api.Presentation.Controllers;

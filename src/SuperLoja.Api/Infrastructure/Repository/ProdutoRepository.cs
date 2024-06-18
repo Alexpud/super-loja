@@ -26,6 +26,12 @@ public class ProdutoRepository : IProdutoRepository
 
     public void Commit() {}
 
+    public void Editar(Produto entity)
+    {
+        throw new NotImplementedException();
+    }
+
+
     public List<Produto> Listar()
     {
         return new List<Produto>

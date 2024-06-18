@@ -7,10 +7,11 @@ using SuperLoja.Api.Domain.Specs.Vouchers;
 
 namespace SuperLoja.Api.Domain.Services;
 
-public class VoucherService(IVoucherRepository voucherRepository, IMapper mapper)
+public class VoucherService(IVoucherRepository voucherRepository, ILogger logger, IMapper mapper)
 {
     private readonly IVoucherRepository _voucherRepository = voucherRepository;
     private readonly IMapper _mapper = mapper;
+    private readonly ILogger _logger = logger;
     public Result<VoucherDto> Cadastrar(CadastrarVoucherDto dto)
     {
         var voucher = new Voucher(
@@ -28,6 +29,37 @@ public class VoucherService(IVoucherRepository voucherRepository, IMapper mapper
         return new Result<VoucherDto>().WithValue(_mapper.Map<VoucherDto>(voucher));
     }
 
+    public Result Desativar(List<Guid> voucherIds)
+    {
+        var vouchers = _voucherRepository
+            .AsQueryable()
+            .Where(p => voucherIds.Contains(p.Id));
+        var result = new Result();
+        try
+        {
+            foreach (var bloco in vouchers.Chunk(500))
+            {
+                foreach (var voucher in bloco)
+                {
+                    voucher.Ativa = false;
+                    _voucherRepository.Editar(voucher);
+                }
+                _voucherRepository.Commit();
+                _logger.LogInformation("Message={Message}; VoucherIds={VoucherIds}",
+                    "Vouchers foram desativados",
+                    string.Join(';', bloco.Select(p => p.Id)));
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Message={Message};", "A desativação de vouchers falhou para um conjunto de vouchers");
+            result = result.WithError("A desativação de vouchers falhou para um conjunto de vouchers.");
+        }
+
+        return result;
+    }
+
+
     private Result<VoucherDto> ValidarCadastroVoucher(Voucher voucher)
     {
         var result = new Result<VoucherDto>();
@@ -38,7 +70,7 @@ public class VoucherService(IVoucherRepository voucherRepository, IMapper mapper
         var vouchers = _voucherRepository.ObterPorSpecification(new VoucherComMesmoCodigoSpecification(voucher.Codigo));
         if (vouchers.Any())
             result = result.WithError("Ja existe um voucher com o mesmo código");
-        
+
         return result;
     }
 }

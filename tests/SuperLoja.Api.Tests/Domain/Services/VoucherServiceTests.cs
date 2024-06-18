@@ -1,4 +1,5 @@
 using AutoMapper;
+using Microsoft.Extensions.Logging;
 using NSubstitute;
 using SuperLoja.Api.Domain.Dtos;
 using SuperLoja.Api.Domain.Entidades;
@@ -14,11 +15,13 @@ public class VoucherServiceTests
     private readonly VoucherService _sut;
     private readonly IVoucherRepository _voucherRepository;
     private readonly IMapper _mapper;
+    private readonly ILogger _logger;
     public VoucherServiceTests()
     {
         _voucherRepository = Substitute.For<IVoucherRepository>();
         _mapper = Substitute.For<IMapper>();
-        _sut = new VoucherService(_voucherRepository, _mapper);
+        _logger = Substitute.For<ILogger>();
+        _sut = new VoucherService(_voucherRepository, _logger, _mapper);
     }
 
     [Fact]

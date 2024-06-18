@@ -8,5 +8,6 @@ public interface IRepository<T> where T : EntidadeBase
     IQueryable<T> AsQueryable();
     IQueryable<T> ObterPorSpecification(ISpecification<T> specification);
     void Adicionar(T entity);
+    void Editar(T entity);
     void Commit();
 }

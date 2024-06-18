@@ -1,4 +1,5 @@
 using SuperLoja.Api.Domain.Repository;
+using SuperLoja.Api.Domain.Services;
 using SuperLoja.Api.Infrastructure.Repository;
 using SuperLoja.Api.Presentation.Configuration;
 using System.Reflection;
@@ -12,6 +13,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.ConfigureSwagerServices();
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.AddScoped<IProdutoRepository, ProdutoRepository>();
+// builder.Services.AddScoped<IVoucherRepository, VoucherRepository>();
+
+builder.Services.AddScoped<VoucherService>();
+builder.Services.AddScoped<ProdutoService>();
 
 var app = builder.Build();
 
