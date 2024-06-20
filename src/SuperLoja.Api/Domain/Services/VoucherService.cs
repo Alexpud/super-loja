@@ -28,6 +28,20 @@ public class VoucherService(IVoucherRepository voucherRepository, ILogger logger
         _voucherRepository.Commit();
         return new Result<VoucherDto>().WithValue(_mapper.Map<VoucherDto>(voucher));
     }
+    
+    private Result<VoucherDto> ValidarCadastroVoucher(Voucher voucher)
+    {
+        var result = new Result<VoucherDto>();
+        var validation = voucher.Validar();
+        if (!validation.IsValid)
+            result = result.WithError("Dados invalidos de cadastro de voucher");
+
+        var vouchers = _voucherRepository.ObterPorSpecification(new VoucherComMesmoCodigoSpecification(voucher.Codigo));
+        if (vouchers.Any())
+            result = result.WithError("Ja existe um voucher com o mesmo código");
+
+        return result;
+    }
 
     public Result Desativar(List<Guid> voucherIds)
     {
@@ -55,21 +69,6 @@ public class VoucherService(IVoucherRepository voucherRepository, ILogger logger
             _logger.LogError(ex, "Message={Message};", "A desativação de vouchers falhou para um conjunto de vouchers");
             result = result.WithError("A desativação de vouchers falhou para um conjunto de vouchers.");
         }
-
-        return result;
-    }
-
-
-    private Result<VoucherDto> ValidarCadastroVoucher(Voucher voucher)
-    {
-        var result = new Result<VoucherDto>();
-        var validation = voucher.Validar();
-        if (!validation.IsValid)
-            result = result.WithError("Dados invalidos de cadastro de voucher");
-
-        var vouchers = _voucherRepository.ObterPorSpecification(new VoucherComMesmoCodigoSpecification(voucher.Codigo));
-        if (vouchers.Any())
-            result = result.WithError("Ja existe um voucher com o mesmo código");
 
         return result;
     }
