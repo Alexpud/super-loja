@@ -5,7 +5,7 @@ namespace SuperLoja.Api.Domain.Specs.Vouchers;
 
 public class VoucherComMesmoCodigoSpecification(string codigo) : LinqSpecification<Voucher>
 {
-    private string _codigo = codigo;
+    private readonly string _codigo = codigo;
     protected override Expression<Func<Voucher, bool>> GetExpression()
     {
         return p => p.Codigo == _codigo;

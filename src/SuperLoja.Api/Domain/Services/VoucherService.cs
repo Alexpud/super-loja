@@ -7,11 +7,11 @@ using SuperLoja.Api.Domain.Specs.Vouchers;
 
 namespace SuperLoja.Api.Domain.Services;
 
-public class VoucherService(IVoucherRepository voucherRepository, ILogger logger, IMapper mapper)
+public class VoucherService(IVoucherRepository voucherRepository, ILogger<VoucherService> logger, IMapper mapper)
 {
     private readonly IVoucherRepository _voucherRepository = voucherRepository;
     private readonly IMapper _mapper = mapper;
-    private readonly ILogger _logger = logger;
+    private readonly ILogger<VoucherService> _logger = logger;
     public Result<VoucherDto> Cadastrar(CadastrarVoucherDto dto)
     {
         var voucher = new Voucher(
