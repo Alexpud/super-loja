@@ -15,12 +15,12 @@ public class VoucherServiceTests
     private readonly VoucherService _sut;
     private readonly IVoucherRepository _voucherRepository;
     private readonly IMapper _mapper;
-    private readonly ILogger _logger;
+    private readonly ILogger<VoucherService> _logger;
     public VoucherServiceTests()
     {
         _voucherRepository = Substitute.For<IVoucherRepository>();
         _mapper = Substitute.For<IMapper>();
-        _logger = Substitute.For<ILogger>();
+        _logger = Substitute.For<ILogger<VoucherService>>();
         _sut = new VoucherService(_voucherRepository, _logger, _mapper);
     }
 

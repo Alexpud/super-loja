@@ -1,6 +1,8 @@
 using AutoMapper;
 using SuperLoja.Api.Presentation.Profiles;
 
+namespace SuperLoja.Api.Tests.Presentation;
+
 public class PresentationProfileTests
 {
     [Fact(DisplayName = "Profile do AutoMapper ViewModelsProfile deve ser valido")]
