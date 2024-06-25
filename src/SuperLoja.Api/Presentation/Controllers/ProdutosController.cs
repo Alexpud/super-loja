@@ -13,12 +13,20 @@ namespace SuperLoja.Api.Presentation.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class ProdutosController(IProdutoRepository produtoRepository, ProdutoService produtoService, IMapper mapper) : ControllerBase
+public class ProdutosController(IProdutoRepository produtoRepository, ProdutoService produtoService, IMapper mapper, ILogger<ProdutosController> logger) : ControllerBase
 {
     private readonly IProdutoRepository _produtoRepository = produtoRepository;
     private readonly ProdutoService _produtoService = produtoService;
     private readonly IMapper _mapper = mapper;
-    
+    private readonly ILogger<ProdutosController> _logger = logger;
+
+    [HttpGet("log")]
+    public ActionResult Logar()
+    {
+        _logger.LogInformation("Informação");
+        return Ok();
+    }
+
     /// <summary>
     /// Lista todos os produtos disponiveis
     /// </summary>

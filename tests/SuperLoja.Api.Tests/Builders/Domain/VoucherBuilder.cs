@@ -23,12 +23,13 @@ public class VoucherBuilder : BaseBuilder<Voucher, VoucherBuilder>
 
     public override Voucher Build()
     {
-        return new Voucher(
+        var voucher = new Voucher(
             ativo: _ativa,
             codigo: _codigo,
             dataExpiracao: _dataExpiracao,
             taxa: _taxa
         );
+        return voucher;
     }
 
     public VoucherBuilder ComTaxa(float taxa)

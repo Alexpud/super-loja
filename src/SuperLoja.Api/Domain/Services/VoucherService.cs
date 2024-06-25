@@ -48,6 +48,15 @@ public class VoucherService(IVoucherRepository voucherRepository, ILogger<Vouche
         var vouchers = _voucherRepository
             .AsQueryable()
             .Where(p => voucherIds.Contains(p.Id));
+
+        if (!vouchers.Any())
+            return new Result().WithError("Nenhum voucher foi encontrado");
+        
+        return DesativarVouchers(vouchers);
+    }
+
+    private Result DesativarVouchers(IQueryable<Voucher> vouchers)
+    {
         var result = new Result();
         try
         {
@@ -72,4 +81,5 @@ public class VoucherService(IVoucherRepository voucherRepository, ILogger<Vouche
 
         return result;
     }
+
 }

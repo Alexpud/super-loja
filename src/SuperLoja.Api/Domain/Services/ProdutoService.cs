@@ -42,7 +42,7 @@ public class ProdutoService(IProdutoRepository produtoRepository)
             .ObterPorSpecification(produtoComMesmoCodigoSpec)
             .Any();
         if (existeDuplicata)
-            result = result.WithError((new Error("Já existe um produto com esse código")));
+            result = result.WithError(new Error("Já existe um produto com esse código"));
 
         var mesmaMarca = new ProdutoComMesmaMarcaSpecification(produto.Marca);
         var mesmoNome = new ProdutoComMesmoNomeSpecification(produto.Nome);

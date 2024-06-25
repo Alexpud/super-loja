@@ -1,6 +1,8 @@
 using AutoMapper;
 using Microsoft.Extensions.Logging;
+using MockQueryable.NSubstitute;
 using NSubstitute;
+using NSubstitute.ExceptionExtensions;
 using SuperLoja.Api.Domain.Dtos;
 using SuperLoja.Api.Domain.Entidades;
 using SuperLoja.Api.Domain.Repository;
@@ -89,5 +91,64 @@ public class VoucherServiceTests
         // Assert
         Assert.True(result.IsSuccess);
         _voucherRepository.Received(1).Commit();
+    }
+
+    [Fact]
+    public void Desativar_DeveRetornarComErro_QuandoNenhumVoucherEEcontrado()
+    {
+        // Arrange
+        var vouchers = new List<Voucher>().BuildMock();
+        _voucherRepository.AsQueryable().Returns(vouchers);
+
+        // Act
+        var result = _sut.Desativar(new List<Guid>(){Guid.NewGuid()});
+
+        // Assert
+        Assert.False(result.IsSuccess);
+    }
+
+    [Fact]
+    public void Desativar_DeveRetornarComErro_QuandoDesativacaoDosVocuhersFalhar()
+    {
+        // Arrange
+        var vouchers = new List<Voucher>()
+        {
+            new VoucherBuilder().Build()
+        }.BuildMock();
+
+        _voucherRepository
+            .AsQueryable()
+            .Returns(vouchers);
+
+        _voucherRepository
+            .When(p => p.Commit())
+            .Do(_ => throw new Exception());
+
+        // Act
+        var result = _sut.Desativar(new List<Guid>() { vouchers.First().Id });
+
+        // Assert
+        Assert.False(result.IsSuccess);
+    }
+
+    [Fact]
+    public void Desativar_DeveRetornarComSucesso_QuandoVouchersPassadosForemDesativados()
+    {
+        // Arrange
+        var vouchers = new List<Voucher>()
+        {
+            new VoucherBuilder().Build()
+        }.BuildMock();
+        
+        _voucherRepository
+            .AsQueryable()
+            .Returns(vouchers);
+
+
+        // Act
+        var result = _sut.Desativar(new List<Guid>() { vouchers.First().Id });
+
+        // Assert
+        Assert.True(result.IsSuccess);
     }
 }
