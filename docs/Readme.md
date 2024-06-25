@@ -11,22 +11,21 @@ Como um administrador da plataforma, gostaria de poder cadastrar os produtos com
 - Quantidade
 - Valor
 
-## Como adminsitrador gostaria de poder cadastrar promoções para produtos
+## Como adminsitrador gostaria de poder cadastrar vouchers para produtos
 
-Como um administrador da plataforma, gostaria de poder cadastrar promoções para produtos, com os valores do desconto sendo em porcentagem, maiores que zero e
-menores que 100. Ao criar uma promoção, ela deve vir desativada
+Como um administrador da plataforma, gostaria de poder cadastrar vouchers para produtos, com os valores do desconto sendo em porcentagem, maiores que zero e menores que 100. Ao criar um voucher, ela deve vir desativada
 
-## Não será possivel alterar o valor da promoção já cadastrada
+## Não será possivel alterar o valor da voucher já cadastrada
 
-Não será possível alterar o valor de uma promoção. O correto será descontinuar ela e cadastrar/ativar outra.
+Não será possível alterar o valor de uma voucher. O correto será descontinuar ela e cadastrar/ativar outra.
 
-## Uma promoção terá um tempo de expiração
+## Um voucher terá um tempo de expiração
 
-Uma promoção terá um tempo de expiração onde após essa data, elas serão automaticamente desativadas.
+Uma voucher terá um tempo de expiração onde após essa data, elas serão automaticamente desativadas.
 
-## Uma promoção não pode ser cadastrada com o valor zerado
+## Um voucher não pode ser cadastrada com o valor zerado
 
-Uma promoção não poderá ser cadastrada com valor zerado ou negativado. 
+Uma voucher não poderá ser cadastrada com valor zerado ou negativado. 
 
 ## Os clientes devem poder se registrar na plataforam
 

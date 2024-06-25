@@ -44,7 +44,7 @@ public class ProdutoBuilder : BaseBuilder<Produto, ProdutoBuilder>
         return this;
     }
 
-    public override ProdutoBuilder ComPropriedadesPreenchidas()
+    public ProdutoBuilder ComPropriedadesPreenchidas()
     {
         _codigo = _fixture.Create<string>();
         _nome = _fixture.Create<string>();

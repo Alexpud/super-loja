@@ -2,7 +2,7 @@
 using SuperLoja.Api.Domain.Specs;
 using SuperLoja.Api.Domain.Specs.Produtos;
 
-namespace SuperLoja.Api.Tests.Builders.Domain;
+namespace SuperLoja.Api.Tests.Builders.Domain.Specs.Produtos;
 
 public class SpecTests
 {

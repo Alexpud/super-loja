@@ -5,21 +5,28 @@ using SuperLoja.Api.Domain.Dtos;
 using SuperLoja.Api.Domain.Entidades;
 using SuperLoja.Api.Domain.Repository;
 using SuperLoja.Api.Domain.Services;
-using SuperLoja.Api.Domain.Specs;
 using SuperLoja.Api.Domain.Specs.Produtos;
-using SuperLoja.Api.Presentation.ViewModel;
+using SuperLoja.Api.Presentation.ViewModels;
 using System.Net;
 
 namespace SuperLoja.Api.Presentation.Controllers;
 
-[Route("api/[controller]")]
 [ApiController]
-public class ProdutosController(IProdutoRepository produtoRepository, ProdutoService produtoService, IMapper mapper) : ControllerBase
+[Route("api/[controller]")]
+public class ProdutosController(IProdutoRepository produtoRepository, ProdutoService produtoService, IMapper mapper, ILogger<ProdutosController> logger) : ControllerBase
 {
     private readonly IProdutoRepository _produtoRepository = produtoRepository;
     private readonly ProdutoService _produtoService = produtoService;
     private readonly IMapper _mapper = mapper;
-    
+    private readonly ILogger<ProdutosController> _logger = logger;
+
+    [HttpGet("log")]
+    public ActionResult Logar()
+    {
+        _logger.LogInformation("Informação");
+        return Ok();
+    }
+
     /// <summary>
     /// Lista todos os produtos disponiveis
     /// </summary>

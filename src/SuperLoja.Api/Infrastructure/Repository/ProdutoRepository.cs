@@ -4,6 +4,36 @@ using SuperLoja.Api.Domain.Specs;
 
 namespace SuperLoja.Api.Infrastructure.Repository;
 
+
+public class VoucherRepository : IVoucherRepository
+{
+    public void Adicionar(Voucher entity)
+    {
+        throw new NotImplementedException();
+    }
+
+    public IQueryable<Voucher> AsQueryable()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Commit()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Editar(Voucher entity)
+    {
+        throw new NotImplementedException();
+    }
+
+    public IQueryable<Voucher> ObterPorSpecification(ISpecification<Voucher> specification)
+    {
+        throw new NotImplementedException();
+    }
+
+}
+
 public class ProdutoRepository : IProdutoRepository
 {
     public void Adicionar(Produto produto)
@@ -24,9 +54,13 @@ public class ProdutoRepository : IProdutoRepository
         }.AsQueryable();
     }
 
-    public void Commit()
+    public void Commit() {}
+
+    public void Editar(Produto entity)
     {
+        throw new NotImplementedException();
     }
+
 
     public List<Produto> Listar()
     {

@@ -3,8 +3,6 @@
 public abstract class BaseBuilder<TEntity, TBuilder>
 {
     protected TEntity _object;
-    
-    public abstract TBuilder ComPropriedadesPreenchidas();
 
-    public virtual TEntity Build() => _object;
+    public abstract TEntity Build();
 }

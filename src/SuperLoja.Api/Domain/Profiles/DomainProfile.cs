@@ -2,13 +2,14 @@
 using SuperLoja.Api.Domain.Dtos;
 using SuperLoja.Api.Domain.Entidades;
 
-namespace SuperLoja.Api.Presentation.Profiles
+namespace SuperLoja.Api.Domain.Profiles
 {
-    public class MappingProfile : Profile
+    public class DomainProfile : Profile
     {
-        public MappingProfile()
+        public DomainProfile()
         {
             CreateMap<Produto, ProdutoDto>();
+            CreateMap<Voucher, VoucherDto>();
         }
     }
 }
