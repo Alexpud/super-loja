@@ -13,7 +13,7 @@ public class SpecTests
         const string Codigo = "codigo";
         var lista = new List<Produto>()
         {
-            new ProdutoBuilder().ComCodigo(Codigo).Build()
+            new ProdutoBuilder().ComCodigo(Codigo).Create()
         };
 
         // Act
@@ -31,7 +31,7 @@ public class SpecTests
         const string Nome = "Nome";
         var lista = new List<Produto>()
         {
-            new ProdutoBuilder().ComNome(Nome).Build()
+            new ProdutoBuilder().ComNome(Nome).Create()
         };
 
         // Act
@@ -49,7 +49,7 @@ public class SpecTests
         const string Marca = "marca";
         var lista = new List<Produto>()
         {
-            new ProdutoBuilder().ComMarca(Marca).Build()
+            new ProdutoBuilder().ComMarca(Marca).Create()
         };
 
         // Act

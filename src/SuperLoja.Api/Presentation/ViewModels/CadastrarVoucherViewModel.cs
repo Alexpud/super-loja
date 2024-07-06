@@ -7,6 +7,9 @@ public class CadastrarVoucherViewModel
     
     [JsonRequired]
     public DateTime DataExpiracao { get; set; }
+
+    [JsonRequired]
+    public DateTime ValidoDesde { get; set; }
     
     [JsonRequired]
     public float Taxa { get; set; }

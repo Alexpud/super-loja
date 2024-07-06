@@ -15,8 +15,8 @@ public class VoucherComMesmoCodigoSpecificationTests
 
         var vouchers = new List<Voucher>()
         {
-            new VoucherBuilder().ComCodigo(Codigo).Build(),
-            new VoucherBuilder().ComCodigo("Codigo diferente").Build()
+            new VoucherBuilder().ComCodigo(Codigo).Create(),
+            new VoucherBuilder().ComCodigo("Codigo diferente").Create()
         };
 
         // Act

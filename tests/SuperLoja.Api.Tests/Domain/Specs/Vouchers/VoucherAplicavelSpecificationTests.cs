@@ -14,8 +14,8 @@ public class VoucherAplicavelSpecificationTests
         var spec = new VoucherAplicavelSpecification(date);
         var vouchers = new List<Voucher>()
         {
-            new VoucherBuilder().EhAtiva(true).ComDataExpiracao(date.AddMonths(-1)).Build(),
-            new VoucherBuilder().EhAtiva(false).ComDataExpiracao(date.AddMonths(4)).Build()
+            new VoucherBuilder().EhAtiva(true).ComDataExpiracao(date.AddMonths(-1)).Create(),
+            new VoucherBuilder().EhAtiva(false).ComDataExpiracao(date.AddMonths(4)).Create()
         };
 
         // Act
@@ -33,8 +33,8 @@ public class VoucherAplicavelSpecificationTests
         var spec = new VoucherAplicavelSpecification(date);
         var vouchers = new List<Voucher>()
         {
-            new VoucherBuilder().EhAtiva(true).ComDataExpiracao(date.AddMonths(1)).Build(),
-            new VoucherBuilder().EhAtiva(false).ComDataExpiracao(date.AddMonths(4)).Build()
+            new VoucherBuilder().EhAtiva(true).ComDataExpiracao(date.AddMonths(1)).Create(),
+            new VoucherBuilder().EhAtiva(false).ComDataExpiracao(date.AddMonths(4)).Create()
         };
 
         // Act

@@ -20,7 +20,7 @@ public class ProdutoValidatorTests
     public void TestValidate_DeveRetornarComErroParaNome_QuandoNomeEInvalido(string nome)
     {
         // Assert
-        var produto = new ProdutoBuilder().ComNome(nome).Build();
+        var produto = new ProdutoBuilder().ComNome(nome).Create();
 
         // Act
         var validationResult = _sut.TestValidate(produto);
@@ -38,7 +38,7 @@ public class ProdutoValidatorTests
     public void Validar_DeveRetornarComErro_QuandoMarcaEInvalido(string marca)
     {
         // Assert
-        var produto = new ProdutoBuilder().ComMarca(marca).Build();
+        var produto = new ProdutoBuilder().ComMarca(marca).Create();
 
         // Act
         var validationResult = _sut.TestValidate(produto);
@@ -56,7 +56,7 @@ public class ProdutoValidatorTests
     public void Validar_DeveRetornarComErro_QuandoCodigoEInvalido(string codigo)
     {
         // Assert
-        var produto = new ProdutoBuilder().ComCodigo(codigo).Build();
+        var produto = new ProdutoBuilder().ComCodigo(codigo).Create();
 
         // Act
         var validationResult = _sut.TestValidate(produto);
@@ -71,7 +71,7 @@ public class ProdutoValidatorTests
     public void Validar_DeveRetornarComErro_QuandoQuantidadeEMenorQueZero()
     {
         // Arrange
-        var produto = new ProdutoBuilder().ComQuantidade(-1).Build();
+        var produto = new ProdutoBuilder().ComQuantidade(-1).Create();
 
         // Act
         var validationResult = _sut.TestValidate(produto);
@@ -86,7 +86,7 @@ public class ProdutoValidatorTests
     public void TestValidate_DeveSerValido_QuandoProdutoEValido()
     {
         // Arrange
-        var produto = new ProdutoBuilder().ComPropriedadesPreenchidas().Build();
+        var produto = new ProdutoBuilder().ComPropriedadesPreenchidas().Create();
 
         // Act
         var validationResult = _sut.TestValidate(produto);

@@ -6,7 +6,7 @@ public abstract class EntidadeBase
 {
     public Guid Id { get; }
     public DateTime CriadoEm { get; }
-    public DateTime? UltimaAtualizacaoEm { get; private set; }
+    public DateTime? UltimaAtualizacaoEm { get; protected set; }
     public abstract ValidationResult Validar();
 
     protected EntidadeBase()

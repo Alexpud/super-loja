@@ -9,7 +9,7 @@ public class ProdutoBuilder : BaseBuilder<Produto, ProdutoBuilder>
     private string _codigo, _nome, _marca;
     private int _quantidade;
 
-    public override Produto Build()
+    public override Produto Create()
     {
         return new Produto(
             nome: _nome,

@@ -1,4 +1,3 @@
-using System.Data;
 using FluentValidation;
 using SuperLoja.Api.Domain.Entidades;
 
@@ -14,5 +13,8 @@ public class VoucherValidator : AbstractValidator<Voucher>
             .LessThanOrEqualTo(1)
             .WithMessage("{PropertyName} deve ser inferior ou igual a 1");
         RuleFor(p => p.Codigo).NotEmpty().WithMessage("{PropertyName} é obrigatória");
+        RuleFor(p => p.ValidoDesde)
+            .LessThan(p => p.DataExpiracao)
+            .WithMessage("{PropertyName} deve ser inferior a Data de expiração");
     }
 }

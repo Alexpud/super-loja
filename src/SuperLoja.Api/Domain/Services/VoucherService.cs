@@ -18,6 +18,7 @@ public class VoucherService(IVoucherRepository voucherRepository, ILogger<Vouche
             ativo: false,
             codigo: dto.Codigo,
             dataExpiracao: dto.DataExpiracao,
+            validoDesde: dto.ValidoDesde,
             taxa: dto.Taxa);
 
         var validationResult = ValidarCadastroVoucher(voucher);
@@ -82,4 +83,15 @@ public class VoucherService(IVoucherRepository voucherRepository, ILogger<Vouche
         return result;
     }
 
+    public Result<VoucherDto> Atualizar(AtualizaVoucherDto model)
+    {
+        var voucher = _voucherRepository.ObterPorId(model.Id) ?? throw new ArgumentException("Voucher não encontrado");
+        voucher.Atualizar(model);
+        var validationResult = voucher.Validar();
+        if (!validationResult.IsValid)
+            return new Result<VoucherDto>().WithError("Erro de validação na atualização do voucher");
+        _voucherRepository.Atualizar(voucher);
+        _voucherRepository.Commit();
+        return new Result<VoucherDto>().WithValue(_mapper.Map<VoucherDto>(voucher));
+    }
 }

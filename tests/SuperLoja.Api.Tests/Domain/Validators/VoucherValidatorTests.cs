@@ -16,7 +16,7 @@ public class VoucherValidatorTests
     public void TestValidate_DeveTerErroParaTaxa_QuandoElaForInvalida(float taxa)
     {
         // Arrange
-        var voucher = new VoucherBuilder().ComTaxa(taxa).Build();
+        var voucher = new VoucherBuilder().ComTaxa(taxa).Create();
 
         // Act
         var validation = _sut.TestValidate(voucher);
@@ -32,7 +32,24 @@ public class VoucherValidatorTests
     public void TestValidate_DeveTerErroParaCodigo_QuandoValorForInvalido(string codigo)
     {
         // Arrange
-        var voucher = new VoucherBuilder().ComCodigo(codigo).Build();
+        var voucher = new VoucherBuilder().ComCodigo(codigo).Create();
+
+        // Act
+        var validation = _sut.TestValidate(voucher);
+
+        // Assert
+        validation.ShouldHaveValidationErrorFor(p => p.Codigo);
+    }
+
+    [Fact]
+    public void TestValidate_DeveTerErroParaValidoDesde_QuandoDataExpiracaoForMenor()
+    {
+        // Arrange
+        var validoDesde = DateTime.Now;
+        var voucher = new VoucherBuilder()
+            .ComValidoDesde(validoDesde)
+            .ComDataExpiracao(validoDesde.AddMonths(-1))
+            .Create();
 
         // Act
         var validation = _sut.TestValidate(voucher);
@@ -45,7 +62,7 @@ public class VoucherValidatorTests
     public void TestValidate_DeveRetornarSemErros_QuandoVoucherForValido()
     {
         // Arrange
-        var voucher = new VoucherBuilder().ComTaxa(1).ComCodigo("asdsa").Build();
+        var voucher = new VoucherBuilder().BuildDefault().Create();
 
         // Act
         var validation = _sut.TestValidate(voucher);

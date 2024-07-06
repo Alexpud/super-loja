@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using MockQueryable.NSubstitute;
 using NSubstitute;
 using NSubstitute.ExceptionExtensions;
+using NSubstitute.ReturnsExtensions;
 using SuperLoja.Api.Domain.Dtos;
 using SuperLoja.Api.Domain.Entidades;
 using SuperLoja.Api.Domain.Repository;
@@ -52,7 +53,7 @@ public class VoucherServiceTests
             .ObterPorSpecification(Arg.Any<ISpecification<Voucher>>())
             .Returns(new List<Voucher>()
             {
-                new VoucherBuilder().ComCodigo(Codigo).Build()
+                new VoucherBuilder().ComCodigo(Codigo).Create()
             }.AsQueryable());
         
         var dto = new CadastrarVoucherDto
@@ -73,12 +74,15 @@ public class VoucherServiceTests
     public void Cadastrar_DeveRetornarComSucesso_QuandoVoucherValidoEUnico()
     {
         // Arrange
-        _voucherRepository.ObterPorSpecification(Arg.Any<ISpecification<Voucher>>())
+        _voucherRepository
+            .ObterPorSpecification(Arg.Any<ISpecification<Voucher>>())
             .Returns(new List<Voucher>().AsQueryable());
 
+        var date = DateTime.Now;
         var dto = new CadastrarVoucherDto
         {
-            DataExpiracao = new DateTime(),
+            DataExpiracao = date.AddDays(1),
+            ValidoDesde = date,
             Taxa = 0.5f,
             Codigo = "CODIGO"
         };   
@@ -89,8 +93,9 @@ public class VoucherServiceTests
         var result = _sut.Cadastrar(dto);
 
         // Assert
-        Assert.True(result.IsSuccess);
-        _voucherRepository.Received(1).Commit();
+        Assert.Multiple(
+            () => Assert.True(result.IsSuccess),
+            () => _voucherRepository.Received(1).Commit());
     }
 
     [Fact]
@@ -113,7 +118,7 @@ public class VoucherServiceTests
         // Arrange
         var vouchers = new List<Voucher>()
         {
-            new VoucherBuilder().Build()
+            new VoucherBuilder().Create()
         }.BuildMock();
 
         _voucherRepository
@@ -137,7 +142,7 @@ public class VoucherServiceTests
         // Arrange
         var vouchers = new List<Voucher>()
         {
-            new VoucherBuilder().Build()
+            new VoucherBuilder().Create()
         }.BuildMock();
         
         _voucherRepository
@@ -151,4 +156,60 @@ public class VoucherServiceTests
         // Assert
         Assert.True(result.IsSuccess);
     }
+    
+    [Fact]
+    public void Atualizar_DeveLancarException_QuandoVoucherNaoEncontrado()
+    {
+        // Arrange
+        var model = new AtualizaVoucherDto();
+        _voucherRepository.ObterPorId(Arg.Any<Guid>())
+            .ReturnsNull();
+
+        // Act & Assert
+        Assert.Throws<ArgumentException>(() =>_sut.Atualizar(model));
+    }
+
+
+    [Fact]
+    public void Atualizar_DeveRetornarComErro_QuandoDadosInvalidos()
+    {
+        // Arrange
+        var model = new AtualizaVoucherDto();
+        _voucherRepository
+            .ObterPorId(Arg.Any<Guid>())
+            .Returns(new VoucherBuilder().BuildDefault().Create());
+
+        // Act
+        var result = _sut.Atualizar(model);
+
+        // Assert
+        Assert.True(result.IsFailed);
+    }
+
+    [Fact]
+    public void Atualizar_DeveAtualizarAsPropriedadesDoVoucher_QuandoBemSucedido()
+    {
+        // Arrange
+        var currentDate = DateTime.Now;
+        var model = new AtualizaVoucherDto()
+        {
+            Ativo =true,
+            DataExpiracao = currentDate.AddMonths(1),
+            ValidoDesde = currentDate,
+            Id = Guid.NewGuid()
+        };
+        _voucherRepository
+            .ObterPorId(Arg.Any<Guid>())
+            .Returns(new VoucherBuilder().BuildDefault().Create());
+
+        // Act
+        var result = _sut.Atualizar(model);
+
+        // Assert
+        Assert.Multiple(
+            () => Assert.True(result.IsSuccess),
+            () => _voucherRepository.Received(1).Atualizar(Arg.Any<Voucher>())
+        );
+    }
+
 }

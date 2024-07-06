@@ -1,8 +1,10 @@
 ﻿namespace SuperLoja.Api.Tests.Builders.Domain;
 
-public abstract class BaseBuilder<TEntity, TBuilder>
+public abstract class BaseBuilder<TEntity, TBuilder> where TBuilder : class, new()
 {
     protected TEntity _object;
 
-    public abstract TEntity Build();
+    public virtual TBuilder BuildDefault() => new TBuilder();
+
+    public abstract TEntity Create();
 }
