@@ -49,7 +49,7 @@ public class VoucherServiceTests
         // Arrange
         const string Codigo = "Codigo";
         _voucherRepository
-            .ObterPorSpecification(Arg.Any<ISpecification<Voucher>>())
+            .EncontrarTodos(Arg.Any<ISpecification<Voucher>>())
             .Returns(new List<Voucher>()
             {
                 new VoucherBuilder().ComCodigo(Codigo).Build()
@@ -73,7 +73,7 @@ public class VoucherServiceTests
     public void Cadastrar_DeveRetornarComSucesso_QuandoVoucherValidoEUnico()
     {
         // Arrange
-        _voucherRepository.ObterPorSpecification(Arg.Any<ISpecification<Voucher>>())
+        _voucherRepository.EncontrarTodos(Arg.Any<ISpecification<Voucher>>())
             .Returns(new List<Voucher>().AsQueryable());
 
         var dto = new CadastrarVoucherDto

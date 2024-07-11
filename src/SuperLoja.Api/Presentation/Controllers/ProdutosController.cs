@@ -65,7 +65,7 @@ public class ProdutosController(IProdutoRepository produtoRepository, ProdutoSer
     public ActionResult<ProdutoDto> ObterPorCodigo(string codigo)
     {
         var produto = _produtoRepository
-            .ObterPorSpecification(new ProdutoComMesmoCodigoSpecification(codigo))
+            .EncontrarTodos(new ProdutosPorCodigoSpecification(codigo))
             .FirstOrDefault();
         if (produto == null)
             return NoContent();
@@ -94,6 +94,7 @@ public class ProdutosController(IProdutoRepository produtoRepository, ProdutoSer
     public ActionResult Deletar(Guid id)
     {
         _produtoRepository.Remover(id);
+        _produtoRepository.Commit();
         return NoContent();
     }
 }

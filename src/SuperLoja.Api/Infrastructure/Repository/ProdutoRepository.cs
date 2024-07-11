@@ -27,11 +27,15 @@ public class VoucherRepository : IVoucherRepository
         throw new NotImplementedException();
     }
 
-    public IQueryable<Voucher> ObterPorSpecification(ISpecification<Voucher> specification)
+    public IQueryable<Voucher> EncontrarTodos(ISpecification<Voucher> specification)
     {
         throw new NotImplementedException();
     }
 
+    public void Remover(Guid id)
+    {
+        throw new NotImplementedException();
+    }
 }
 
 public class ProdutoRepository : IProdutoRepository
@@ -75,7 +79,7 @@ public class ProdutoRepository : IProdutoRepository
         };
     }
 
-    public IQueryable<Produto> ObterPorSpecification(ISpecification<Produto> specification)
+    public IQueryable<Produto> EncontrarTodos(ISpecification<Produto> specification)
     {
         return AsQueryable().Where(specification.EhSatisfeito).AsQueryable();
     }

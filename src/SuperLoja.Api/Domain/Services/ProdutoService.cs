@@ -37,18 +37,18 @@ public class ProdutoService(IProdutoRepository produtoRepository)
     private Result ValidarProdutoJaExistente(Produto produto)
     {
         var result = new Result();
-        var produtoComMesmoCodigoSpec = new ProdutoComMesmoCodigoSpecification(produto.Codigo);
+        var produtoComMesmoCodigoSpec = new ProdutosPorCodigoSpecification(produto.Codigo);
         var existeDuplicata = _produtoRepository
-            .ObterPorSpecification(produtoComMesmoCodigoSpec)
+            .EncontrarTodos(produtoComMesmoCodigoSpec)
             .Any();
         if (existeDuplicata)
             result = result.WithError(new Error("Já existe um produto com esse código"));
 
-        var mesmaMarca = new ProdutoComMesmaMarcaSpecification(produto.Marca);
-        var mesmoNome = new ProdutoComMesmoNomeSpecification(produto.Nome);
+        var mesmaMarca = new ProdutosPorMarcaSpecification(produto.Marca);
+        var mesmoNome = new ProdutosPorNomeSpecification(produto.Nome);
         var mesmaMarcaEProdutoSpec = new AndSpecification<Produto>(mesmoNome, mesmaMarca);
         existeDuplicata = _produtoRepository
-            .ObterPorSpecification(mesmaMarcaEProdutoSpec)
+            .EncontrarTodos(mesmaMarcaEProdutoSpec)
             .Any();
                     
         if (existeDuplicata)
