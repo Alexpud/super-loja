@@ -1,18 +1,15 @@
-﻿namespace SuperLoja.Api.Domain.Specs;
+﻿using System.Linq.Expressions;
 
-public class AndSpecification<T> : ISpecification<T> where T: class
+namespace SuperLoja.Api.Domain.Specs;
+
+public class AndSpecification<T> : BaseSpecification<T> where T: class
 {
-    private readonly ISpecification<T> _specificationA;
-    private readonly ISpecification<T> _specificationB;
-
     public AndSpecification(ISpecification<T> specificationA, ISpecification<T> specificiationB)
     {
-        _specificationA = specificationA;
-        _specificationB = specificiationB;
-    }
-
-    public bool EhSatisfeito(T parametro)
-    {
-        return _specificationA.EhSatisfeito(parametro) && _specificationB.EhSatisfeito(parametro);
+        var expr1 = specificationA.GetExpression();
+        var expr2 = specificiationB.GetExpression();
+        var invokedExpr = Expression.Invoke(expr2, expr1.Parameters.Cast<Expression>());
+        expression = Expression.Lambda<Func<T, bool>>
+              (Expression.AndAlso(expr1.Body, invokedExpr), expr1.Parameters);
     }
 }

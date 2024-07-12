@@ -27,7 +27,7 @@ public class VouchersController(IVoucherRepository repository, VoucherService vo
     public ActionResult ListarVouchersAplicaveis(DateTime periodo)
     {
         var spec = new VoucherAplicavelSpecification(periodo);
-        var vouchers = _repository.ObterPorSpecification(spec);
+        var vouchers = _repository.EncontrarTodos(spec);
         return base.Ok(_mapper.ProjectTo<VoucherDto>(vouchers));
     }
 

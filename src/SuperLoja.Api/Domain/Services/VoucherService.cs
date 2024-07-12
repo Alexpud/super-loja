@@ -36,7 +36,7 @@ public class VoucherService(IVoucherRepository voucherRepository, ILogger<Vouche
         if (!validation.IsValid)
             result = result.WithError("Dados invalidos de cadastro de voucher");
 
-        var vouchers = _voucherRepository.ObterPorSpecification(new VoucherComMesmoCodigoSpecification(voucher.Codigo));
+        var vouchers = _voucherRepository.EncontrarTodos(new VoucherComMesmoCodigoSpecification(voucher.Codigo));
         if (vouchers.Any())
             result = result.WithError("Ja existe um voucher com o mesmo código");
 

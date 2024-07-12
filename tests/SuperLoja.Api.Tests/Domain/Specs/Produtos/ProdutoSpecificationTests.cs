@@ -4,7 +4,7 @@ using SuperLoja.Api.Domain.Specs.Produtos;
 
 namespace SuperLoja.Api.Tests.Builders.Domain.Specs.Produtos;
 
-public class SpecTests
+public class ProdutoSpecificationTests
 {
     [Fact]
     public void ProdutoComMesmoCodigoSpecification_DeveRetornarTrue_QuandoProdutoComMesmoCodigoExisteNaLista()
@@ -17,7 +17,7 @@ public class SpecTests
         };
 
         // Act
-        var item = lista.Where(new ProdutoComMesmoCodigoSpecification(Codigo).EhSatisfeito)
+        var item = lista.Where(new ProdutosPorCodigoSpecification(Codigo).EhSatisfeito)
             .FirstOrDefault();
 
         // Assert
@@ -35,7 +35,7 @@ public class SpecTests
         };
 
         // Act
-        var item = lista.Where(new ProdutoComMesmoNomeSpecification(Nome).EhSatisfeito)
+        var item = lista.Where(new ProdutosPorNomeSpecification(Nome).EhSatisfeito)
             .FirstOrDefault();
 
         // Assert
@@ -53,7 +53,7 @@ public class SpecTests
         };
 
         // Act
-        var item = lista.Where(new ProdutoComMesmaMarcaSpecification(Marca).EhSatisfeito)
+        var item = lista.Where(new ProdutosPorMarcaSpecification(Marca).EhSatisfeito)
             .FirstOrDefault();
 
         // Assert
