@@ -47,7 +47,7 @@ public class ProdutoServiceTests
         }.BuildMock();
 
         _produtoRepository
-            .EncontrarTodos(Arg.Any<ISpecification<Produto>>())
+            .EncontrarTodos(Arg.Any<BaseSpecification<Produto>>())
             .Returns(produtos);
 
         var dto = new CadastrarProdutoDto()
@@ -83,7 +83,7 @@ public class ProdutoServiceTests
         }.AsQueryable();
 
         _produtoRepository
-            .EncontrarTodos(Arg.Any<ISpecification<Produto>>())
+            .EncontrarTodos(Arg.Any<BaseSpecification<Produto>>())
             .Returns(produtos);
 
         var dto = new CadastrarProdutoDto()
@@ -110,7 +110,7 @@ public class ProdutoServiceTests
         var produtos = new List<Produto>().AsQueryable();
 
         _produtoRepository
-            .EncontrarTodos(Arg.Any<ISpecification<Produto>>())
+            .EncontrarTodos(Arg.Any<BaseSpecification<Produto>>())
             .Returns(produtos);
 
         var dto = new CadastrarProdutoDto()

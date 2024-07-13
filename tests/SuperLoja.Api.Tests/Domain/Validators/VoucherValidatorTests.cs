@@ -1,5 +1,5 @@
 using FluentValidation.TestHelper;
-using SuperLoja.Api.Domain.Validator;
+using SuperLoja.Api.Domain.Entidades;
 using SuperLoja.Api.Tests.Builders;
 
 namespace SuperLoja.Api.Tests.Domain.Validators;

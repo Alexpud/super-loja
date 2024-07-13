@@ -1,8 +1,7 @@
 using System.Data;
 using FluentValidation;
-using SuperLoja.Api.Domain.Entidades;
 
-namespace SuperLoja.Api.Domain.Validator;
+namespace SuperLoja.Api.Domain.Entidades;
 
 public class VoucherValidator : AbstractValidator<Voucher>
 {

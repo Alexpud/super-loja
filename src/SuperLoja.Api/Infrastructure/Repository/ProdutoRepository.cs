@@ -1,70 +1,26 @@
-﻿using SuperLoja.Api.Domain.Entidades;
+﻿using Microsoft.EntityFrameworkCore;
+using SuperLoja.Api.Domain.Entidades;
 using SuperLoja.Api.Domain.Repository;
 using SuperLoja.Api.Domain.Specs;
 
 namespace SuperLoja.Api.Infrastructure.Repository;
 
-
-public class VoucherRepository : IVoucherRepository
+public class ProdutoRepository(SuperLojaDbContext context) : IProdutoRepository
 {
-    public void Adicionar(Voucher entity)
-    {
-        throw new NotImplementedException();
-    }
-
-    public IQueryable<Voucher> AsQueryable()
-    {
-        throw new NotImplementedException();
-    }
-
-    public void Commit()
-    {
-        throw new NotImplementedException();
-    }
-
-    public void Editar(Voucher entity)
-    {
-        throw new NotImplementedException();
-    }
-
-    public IQueryable<Voucher> EncontrarTodos(ISpecification<Voucher> specification)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void Remover(Guid id)
-    {
-        throw new NotImplementedException();
-    }
-}
-
-public class ProdutoRepository : IProdutoRepository
-{
-    public void Adicionar(Produto produto)
-    {
-        Console.WriteLine($"Produto com nome {produto.Nome}foi adicionado com sucesso");
-    }
+    private readonly SuperLojaDbContext _context = context;
+    public void Adicionar(Produto produto) 
+        => _context.Set<Produto>().Add(produto);
 
     public IQueryable<Produto> AsQueryable()
-    {
-        return new List<Produto>
-        {
-            new Produto(
-                nome: "Produto novo",
-                codigo: "Codigo novo",
-                marca: "Marca nova",
-                quantidade: 2,
-                pesoUnitario: 1)
-        }.AsQueryable();
-    }
+        => _context.Set<Produto>();
 
-    public void Commit() {}
+    public async Task Commit()
+        => await _context.SaveChangesAsync();
 
     public void Editar(Produto entity)
-    {
-        throw new NotImplementedException();
-    }
-
+        => _context.Set<Produto>().Update(entity);
+    public async Task<Produto> ObterPorId(Guid id)
+        => await _context.Set<Produto>().FirstOrDefaultAsync(p => p.Id == id);
 
     public List<Produto> Listar()
     {
@@ -79,14 +35,10 @@ public class ProdutoRepository : IProdutoRepository
         };
     }
 
-    public IQueryable<Produto> EncontrarTodos(ISpecification<Produto> specification)
-    {
-        return AsQueryable().Where(specification.EhSatisfeito).AsQueryable();
-    }
+    public IQueryable<Produto> EncontrarTodos(BaseSpecification<Produto> specification) 
+        => AsQueryable().Where(specification.GetExpression());
 
 
-    public void Remover(Guid id)
-    {
-        Console.WriteLine($"Removendo produto com ID {id}");
-    }
+    public void Remover(Produto produto)
+        => _context.Set<Produto>().Remove(produto);
 }

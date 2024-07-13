@@ -1,7 +1,6 @@
 ﻿using FluentValidation;
-using SuperLoja.Api.Domain.Entidades;
 
-namespace SuperLoja.Api.Domain.Validator;
+namespace SuperLoja.Api.Domain.Entidades;
 
 public class ProdutoValidator : AbstractValidator<Produto>
 {

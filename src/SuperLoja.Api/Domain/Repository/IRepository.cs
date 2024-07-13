@@ -6,9 +6,10 @@ namespace SuperLoja.Api.Domain.Repository;
 public interface IRepository<T> where T : EntidadeBase
 {
     IQueryable<T> AsQueryable();
-    IQueryable<T> EncontrarTodos(ISpecification<T> specification);
+    IQueryable<T> EncontrarTodos(BaseSpecification<T> specification);
+    Task<T> ObterPorId(Guid id);
     void Adicionar(T entity);
     void Editar(T entity);
-    void Commit();
-    void Remover(Guid id);
+    Task Commit();
+    void Remover(T entity);
 }

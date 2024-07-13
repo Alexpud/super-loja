@@ -1,5 +1,7 @@
+using Microsoft.EntityFrameworkCore;
 using SuperLoja.Api.Domain.Repository;
 using SuperLoja.Api.Domain.Services;
+using SuperLoja.Api.Infrastructure;
 using SuperLoja.Api.Infrastructure.Repository;
 using SuperLoja.Api.Presentation.Configuration;
 using System.Reflection;
@@ -10,6 +12,13 @@ builder.Logging.AddConsole();
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+builder.Services.AddDbContext<SuperLojaDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
+    options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+});
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.ConfigureSwagerServices();

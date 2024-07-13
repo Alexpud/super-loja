@@ -1,5 +1,4 @@
 ﻿using SuperLoja.Api.Domain.Entidades;
-using SuperLoja.Api.Domain.Specs;
 
 namespace SuperLoja.Api.Domain.Repository;
 

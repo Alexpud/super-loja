@@ -1,15 +1,16 @@
 using FluentValidation.Results;
-using SuperLoja.Api.Domain.Validator;
 
 namespace SuperLoja.Api.Domain.Entidades;
 
 public class Produto : EntidadeBase
 {
-    public string Nome { get; }
-    public string Codigo { get; }
-    public string Marca { get; }
-    public int Quantidade { get; }
-    public float PesoUnitario { get; }
+    public string Nome { get; private set; }
+    public string Codigo { get; private set; }
+    public string Marca { get; private set; }
+    public int Quantidade { get; private set; }
+    public float PesoUnitario { get; private set; }
+    
+    private Produto() { }
 
     public Produto(
         string nome, 

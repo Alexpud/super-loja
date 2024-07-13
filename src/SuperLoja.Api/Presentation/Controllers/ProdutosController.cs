@@ -91,10 +91,11 @@ public class ProdutosController(IProdutoRepository produtoRepository, ProdutoSer
     /// <param name="id"></param>
     /// <returns></returns>
     [HttpDelete("{id}")]
-    public ActionResult Deletar(Guid id)
+    public async Task<ActionResult> Deletar(Guid id)
     {
-        _produtoRepository.Remover(id);
-        _produtoRepository.Commit();
+        var produto = await _produtoRepository.ObterPorId(id) ?? throw new ArgumentException("Produto não encontrado");
+        _produtoRepository.Remover(produto);
+        await _produtoRepository.Commit();
         return NoContent();
     }
 }
