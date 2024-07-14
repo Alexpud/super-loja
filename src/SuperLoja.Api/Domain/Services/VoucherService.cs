@@ -43,7 +43,7 @@ public class VoucherService(IVoucherRepository voucherRepository, ILogger<Vouche
         return result;
     }
 
-    public Result Desativar(List<Guid> voucherIds)
+    public async Task<Result> Desativar(List<Guid> voucherIds)
     {
         var vouchers = _voucherRepository
             .AsQueryable()
@@ -52,10 +52,10 @@ public class VoucherService(IVoucherRepository voucherRepository, ILogger<Vouche
         if (!vouchers.Any())
             return new Result().WithError("Nenhum voucher foi encontrado");
         
-        return DesativarVouchers(vouchers);
+        return await DesativarVouchers(vouchers);
     }
 
-    private Result DesativarVouchers(IQueryable<Voucher> vouchers)
+    private async Task<Result> DesativarVouchers(IQueryable<Voucher> vouchers)
     {
         var result = new Result();
         try
@@ -67,7 +67,7 @@ public class VoucherService(IVoucherRepository voucherRepository, ILogger<Vouche
                     voucher.Ativa = false;
                     _voucherRepository.Editar(voucher);
                 }
-                _voucherRepository.Commit();
+                await _voucherRepository.Commit();
                 _logger.LogInformation("Message={Message}; VoucherIds={VoucherIds}",
                     "Vouchers foram desativados",
                     string.Join(';', bloco.Select(p => p.Id)));
@@ -81,5 +81,4 @@ public class VoucherService(IVoucherRepository voucherRepository, ILogger<Vouche
 
         return result;
     }
-
 }

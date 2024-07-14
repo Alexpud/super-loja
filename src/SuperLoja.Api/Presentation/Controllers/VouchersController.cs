@@ -51,8 +51,8 @@ public class VouchersController(IVoucherRepository repository, VoucherService vo
     /// <returns></returns>
     [HttpPatch]
     [ProducesResponseType(typeof(Result), (int) HttpStatusCode.OK)]
-    public ActionResult Desativavouchers(DesativarVouchersViewModel model)
+    public async Task<ActionResult> Desativavouchers(DesativarVouchersViewModel model)
     {
-        return Ok(_voucherService.Desativar(model.VoucherIds));
+        return Ok(await _voucherService.Desativar(model.VoucherIds));
     }
 }

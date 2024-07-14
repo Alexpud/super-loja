@@ -1,6 +1,7 @@
 using AutoMapper;
 using FluentResults;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SuperLoja.Api.Domain.Dtos;
 using SuperLoja.Api.Domain.Entidades;
 using SuperLoja.Api.Domain.Repository;
@@ -19,13 +20,6 @@ public class ProdutosController(IProdutoRepository produtoRepository, ProdutoSer
     private readonly ProdutoService _produtoService = produtoService;
     private readonly IMapper _mapper = mapper;
     private readonly ILogger<ProdutosController> _logger = logger;
-
-    [HttpGet("log")]
-    public ActionResult Logar()
-    {
-        _logger.LogInformation("Informação");
-        return Ok();
-    }
 
     /// <summary>
     /// Lista todos os produtos disponiveis
@@ -46,13 +40,10 @@ public class ProdutosController(IProdutoRepository produtoRepository, ProdutoSer
     /// <returns></returns>
     [HttpGet("{id}")]
     [ProducesResponseType(typeof(ProdutoDto), (int)HttpStatusCode.OK)]
-    public ActionResult<ProdutoDto> ObterPorId(Guid id)
+    public async Task<ActionResult<ProdutoDto>> ObterPorId(Guid id)
     {
-        var produto = _produtoRepository.AsQueryable()
-            .FirstOrDefault(p => p.Id == id);
-        if (produto == null)
-            return NoContent();
-        return Ok();
+        var produto = await _produtoRepository.ObterPorId(id);
+        return produto == null ? NoContent() : Ok(_mapper.Map<ProdutoDto>(produto));
     }
 
     /// <summary>
@@ -62,14 +53,13 @@ public class ProdutosController(IProdutoRepository produtoRepository, ProdutoSer
     /// <returns></returns>
     [HttpGet("codigo/{codigo}")]
     [ProducesResponseType(typeof(ProdutoDto), (int)HttpStatusCode.OK)]
-    public ActionResult<ProdutoDto> ObterPorCodigo(string codigo)
+    public async Task<ActionResult<ProdutoDto>> ObterPorCodigo(string codigo)
     {
-        var produto = _produtoRepository
+        var produto = await _produtoRepository
             .EncontrarTodos(new ProdutosPorCodigoSpecification(codigo))
-            .FirstOrDefault();
-        if (produto == null)
-            return NoContent();
-        return Ok();
+            .FirstOrDefaultAsync();
+
+        return produto == null ? NoContent() : Ok();
     }
 
     /// <summary>
